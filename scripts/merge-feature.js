@@ -28,7 +28,7 @@ module.exports = async (name) => {
                 }
               }
               
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nFeature ${name} merged!`);
             }
           );
           break;
@@ -50,7 +50,7 @@ module.exports = async (name) => {
                 }
               }
               
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nFeature ${name} merged!`);
             }
           );
           break;
@@ -72,7 +72,7 @@ module.exports = async (name) => {
                 }
               }
               
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nFeature ${name} merged!`);
             }
           );
           break;
