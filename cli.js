@@ -6,6 +6,8 @@
 
 //#region Required
 var yargs = require("yargs");
+var createFeature = require("./scripts/create-feature.js");
+const { dateFormater } = require("./utilities/date-formater.js")
 //#endregion
 
 //#region command line arguments
@@ -25,7 +27,19 @@ const argv = yargs.command(
 
 //#region Check which command is passed from command line
 /** jsdoc-config-generator */
-if (argv._.includes("create-feature") === true) {
-    
+try {
+    if (argv._.includes("create-feature") === true) {
+        createFeature(argv.name).then(val => {
+            console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+            console.log(val);
+            console.log("Done!");
+        }).catch(err => {
+            console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+            console.error(err);
+        });
+    }
+} catch (error) {
+    console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+    console.error(error);
 }
 //#endregion
