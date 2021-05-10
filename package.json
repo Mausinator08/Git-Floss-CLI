@@ -1,0 +1,22 @@
+{
+  "name": "git-flow",
+  "version": "0.0.1",
+  "description": "Usefull scripts for manipulating GIT.",
+  "main": "cli.js",
+  "repository": "https://mausinator08.visualstudio.com/GitFlow/_git/GitFlow",
+  "author": "John Maus <john.maus@bennyscarwash.com>",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "private": true,
+  "scripts": {
+    "postinstall": "node post-install.js"
+  },
+  "pkg": {
+    "scripts": [
+      "./**/*.js"
+    ]
+  },
+  "bin": "./cli.js",
+  "dependencies": {
+    "yargs": "^17.0.1"
+  }
+}
