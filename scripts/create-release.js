@@ -39,7 +39,7 @@ module.exports = async () => {
                 }
               }
 
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nRelease-${newVersion} created!`);
             },
           );
           break;
@@ -71,7 +71,7 @@ module.exports = async () => {
                 }
               }
 
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nRelease-${newVersion} created!`);
             },
           );
           break;
@@ -103,7 +103,7 @@ module.exports = async () => {
                 }
               }
 
-              resolve(`${stdout}\nFeature ${name} created!`);
+              resolve(`${stdout}\nRelease-${newVersion} created!`);
             },
           );
           break;
