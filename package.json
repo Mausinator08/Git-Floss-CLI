@@ -4,7 +4,7 @@
   "description": "Usefull scripts for manipulating GIT.",
   "main": "cli.js",
   "repository": "https://mausinator08.visualstudio.com/GitFlow/_git/GitFlow",
-  "author": "John Maus <john.maus@bennyscarwash.com>",
+  "author": "John Maus <mauscomp@live.com>",
   "license": "SEE LICENSE IN LICENSE.txt",
   "private": true,
   "scripts": {
