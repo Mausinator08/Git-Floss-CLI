@@ -1,6 +1,8 @@
+"use strict";
+
 /** @module utilities/date-formater */
 
-export const dateFormater = {
+module.exports = {
     /**
      * Converts a date object to a string for the specified format.
      *
@@ -32,7 +34,7 @@ export const dateFormater = {
      * @param {boolean} [withTime=false] - whether to include time for the formats that support it.
      * @return {string} - the returned date string.
      */
-    toString: (date  = new Date(), formatCode = 126, withTime = false) => {
+    toString: (date = new Date(), formatCode = 126, withTime = false) => {
         switch (formatCode) {
             case 1:
                 if (withTime === false) {
