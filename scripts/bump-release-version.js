@@ -13,87 +13,93 @@ module.exports = async (cwd = null) => {
     try {
       switch (os.platform()) {
         case "win32":
-          const pkg = fs.readFileSync(
-            `${cwd !== null ? cwd : process.cwd()}\\package.json`,
-            {
-              encoding: "utf-8",
-            },
-          );
+          {
+            const pkg = fs.readFileSync(
+              `${cwd !== null ? cwd : process.cwd()}\\package.json`,
+              {
+                encoding: "utf-8",
+              },
+            );
 
-          var pkgJson = JSON.parse(pkg);
-          const newVersion = `${pkgJson.version.split(".")[0]}.${
-            parseInt(pkgJson.version.split(".")[1]) + 1
-          }.0`;
+            var pkgJson = JSON.parse(pkg);
+            const newVersion = `${pkgJson.version.split(".")[0]}.${
+              parseInt(pkgJson.version.split(".")[1]) + 1
+            }.0`;
 
-          pkgJson.version = newVersion;
+            pkgJson.version = newVersion;
 
-          fs.writeFileSync(
-            `${cwd !== null ? cwd : process.cwd()}\\package.json`,
-            JSON.stringify(pkgJson, null, 2),
-            { encoding: "utf-8" },
-          );
+            fs.writeFileSync(
+              `${cwd !== null ? cwd : process.cwd()}\\package.json`,
+              JSON.stringify(pkgJson, null, 2),
+              { encoding: "utf-8" },
+            );
 
-          console.log(
-            `${
-              cwd !== null ? cwd : process.cwd()
-            }/package.json version has been updated to ${newVersion}.`,
-          );
+            console.log(
+              `${
+                cwd !== null ? cwd : process.cwd()
+              }/package.json version has been updated to ${newVersion}.`,
+            );
+          }
           break;
 
         case "darwin":
-          const pkg = fs.readFileSync(
-            `${cwd !== null ? cwd : process.cwd()}/package.json`,
-            {
-              encoding: "utf-8",
-            },
-          );
+          {
+            const pkg = fs.readFileSync(
+              `${cwd !== null ? cwd : process.cwd()}/package.json`,
+              {
+                encoding: "utf-8",
+              },
+            );
 
-          var pkgJson = JSON.parse(pkg);
-          const newVersion = `${pkgJson.version.split(".")[0]}.${
-            parseInt(pkgJson.version.split(".")[1]) + 1
-          }.0`;
+            var pkgJson = JSON.parse(pkg);
+            const newVersion = `${pkgJson.version.split(".")[0]}.${
+              parseInt(pkgJson.version.split(".")[1]) + 1
+            }.0`;
 
-          pkgJson.version = newVersion;
+            pkgJson.version = newVersion;
 
-          fs.writeFileSync(
-            `${cwd !== null ? cwd : process.cwd()}/package.json`,
-            JSON.stringify(pkgJson, null, 2),
-            { encoding: "utf-8" },
-          );
+            fs.writeFileSync(
+              `${cwd !== null ? cwd : process.cwd()}/package.json`,
+              JSON.stringify(pkgJson, null, 2),
+              { encoding: "utf-8" },
+            );
 
-          console.log(
-            `${
-              cwd !== null ? cwd : process.cwd()
-            }/package.json version has been updated to ${newVersion}.`,
-          );
+            console.log(
+              `${
+                cwd !== null ? cwd : process.cwd()
+              }/package.json version has been updated to ${newVersion}.`,
+            );
+          }
           break;
 
         case "linux":
-          const pkg = fs.readFileSync(
-            `${cwd !== null ? cwd : process.cwd()}/package.json`,
-            {
-              encoding: "utf-8",
-            },
-          );
+          {
+            const pkg = fs.readFileSync(
+              `${cwd !== null ? cwd : process.cwd()}/package.json`,
+              {
+                encoding: "utf-8",
+              },
+            );
 
-          var pkgJson = JSON.parse(pkg);
-          const newVersion = `${pkgJson.version.split(".")[0]}.${
-            parseInt(pkgJson.version.split(".")[1]) + 1
-          }.0`;
+            var pkgJson = JSON.parse(pkg);
+            const newVersion = `${pkgJson.version.split(".")[0]}.${
+              parseInt(pkgJson.version.split(".")[1]) + 1
+            }.0`;
 
-          pkgJson.version = newVersion;
+            pkgJson.version = newVersion;
 
-          fs.writeFileSync(
-            `${cwd !== null ? cwd : process.cwd()}/package.json`,
-            JSON.stringify(pkgJson, null, 2),
-            { encoding: "utf-8" },
-          );
+            fs.writeFileSync(
+              `${cwd !== null ? cwd : process.cwd()}/package.json`,
+              JSON.stringify(pkgJson, null, 2),
+              { encoding: "utf-8" },
+            );
 
-          console.log(
-            `${
-              cwd !== null ? cwd : process.cwd()
-            }/package.json version has been updated to ${newVersion}.`,
-          );
+            console.log(
+              `${
+                cwd !== null ? cwd : process.cwd()
+              }/package.json version has been updated to ${newVersion}.`,
+            );
+          }
           break;
       }
 

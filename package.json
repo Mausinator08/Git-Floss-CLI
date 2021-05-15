@@ -12,7 +12,9 @@
   },
   "pkg": {
     "scripts": [
-      "./**/*.js"
+      "./cli.js",
+      "./utilities/**/*.js",
+      "./scripts/**/*.js"
     ]
   },
   "bin": "./cli.js",
