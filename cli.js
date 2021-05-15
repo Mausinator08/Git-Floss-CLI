@@ -10,7 +10,7 @@ const createFeature = require("./scripts/create-feature.js");
 const mergeFeature = require("./scripts/merge-feature.js");
 const createRelease = require("./scripts/create-release.js");
 const bumpReleaseVersion = require("./scripts/bump-release-version.js");
-const { dateFormater } = require("./utilities/date-formater.js");
+const dateFormater = require("./utilities/date-formater.js");
 //#endregion
 
 //#region command line arguments
@@ -22,6 +22,11 @@ const argv = yargs
       alias: "n",
       type: "string",
     },
+    userName: {
+      description: "The name of the user creating the feature branch.",
+      alias: "u",
+      type: "string",
+    },
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
@@ -29,15 +34,25 @@ const argv = yargs
       alias: "n",
       type: "string",
     },
-  })
-  .command("create-release", "Stages develop for a new release.")
-  .command("bump-release-version", "Increases the minor release version and resets the hotfix version to 0.", {
-    cwd: {
-      description: "The current working directory for the process that ran the command.",
-      alias: "d",
+    userName: {
+      description: "The name of the user merging the feature branch.",
+      alias: "u",
       type: "string",
     },
   })
+  .command("create-release", "Stages develop for a new release.")
+  .command(
+    "bump-release-version",
+    "Increases the minor release version and resets the hotfix version to 0.",
+    {
+      cwd: {
+        description:
+          "The current working directory for the process that ran the command.",
+        alias: "d",
+        type: "string",
+      },
+    },
+  )
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -46,7 +61,7 @@ const argv = yargs
 /** jsdoc-config-generator */
 try {
   if (argv._.includes("create-feature") === true) {
-    createFeature(argv.name)
+    createFeature(argv.name, argv.userName)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -59,7 +74,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("merge-feature") === true) {
-    mergeFeature(argv.name)
+    mergeFeature(argv.name, argv.userName)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);

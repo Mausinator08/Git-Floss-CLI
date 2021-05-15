@@ -18,14 +18,15 @@ module.exports = async () => {
           });
 
           const pkgJson = JSON.parse(pkg);
-          const newVersion = `${pgkJson.version.split(".")[0]}.${
+          const newVersion = `${pkgJson.version.split(".")[0]}.${
             parseInt(pkgJson.version.split(".")[1]) + 1
           }.0`;
 
           exec(
-            `git checkout -b release-${newVersion} develop &&
-            node ${__dirname}\\..\\cli.js bump-release-version --cwd=${process.cwd()} &&
-            git commit -a -m "Bumped version number to ${newVersion}."`,
+            `git checkout -b release-${newVersion} develop &&` +
+            `git-flow bump-release-version --cwd=${process.cwd()} &&` +
+            `git add -A &&` +
+            `git commit -a -m "Bumped version number to ${newVersion}."`,
             (error, stdout, stderr) => {
               if (error || stderr) {
                 if (error) {
@@ -50,14 +51,15 @@ module.exports = async () => {
           });
 
           const pkgJson = JSON.parse(pkg);
-          const newVersion = `${pgkJson.version.split(".")[0]}.${
+          const newVersion = `${pkgJson.version.split(".")[0]}.${
             parseInt(pkgJson.version.split(".")[1]) + 1
           }.0`;
 
           exec(
-            `git checkout -b release-${newVersion} develop &&
-            node ${__dirname}/../cli.js bump-release-version --cwd=${process.cwd()} &&
-            git commit -a -m "Bumped version number to ${newVersion}."`,
+            `git checkout -b release-${newVersion} develop &&` +
+              `git-flow bump-release-version --cwd=${process.cwd()} &&` +
+              `git add -A &&` +
+              `git commit -a -m "Bumped version number to ${newVersion}."`,
             (error, stdout, stderr) => {
               if (error || stderr) {
                 if (error) {
@@ -82,14 +84,15 @@ module.exports = async () => {
           });
 
           const pkgJson = JSON.parse(pkg);
-          const newVersion = `${pgkJson.version.split(".")[0]}.${
+          const newVersion = `${pkgJson.version.split(".")[0]}.${
             parseInt(pkgJson.version.split(".")[1]) + 1
           }.0`;
 
           exec(
-            `git checkout -b release-${newVersion} develop &&
-            node ${__dirname}/../cli.js bump-release-version --cwd=${process.cwd()} &&
-            git commit -a -m "Bumped version number to ${newVersion}."`,
+            `git checkout -b release-${newVersion} develop &&` +
+              `git-flow bump-release-version --cwd=${process.cwd()} &&` +
+              `git add -A &&` +
+              `git commit -a -m "Bumped version number to ${newVersion}."`,
             (error, stdout, stderr) => {
               if (error || stderr) {
                 if (error) {
