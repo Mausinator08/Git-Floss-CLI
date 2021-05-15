@@ -16,9 +16,9 @@ module.exports = async (name, userName) => {
             `git add -A &&` +
               `git commit -a -m "merging feature ${userName}-${name}" &&` +
               `git checkout develop &&` +
+              `git fetch &&` +
+              `git pull &&` +
               `git merge --no-ff ${userName}-${name} &&` +
-              `git add -A &&` +
-              `git commit -a -m "feature merged: ${userName}-${name}" &&` +
               `git branch -d ${userName}-${name} &&` +
               `git push origin develop`,
             (error, stdout, stderr) => {
@@ -44,9 +44,9 @@ module.exports = async (name, userName) => {
             `git add -A &&` +
               `git commit -a -m "merging feature ${userName}-${name}" &&` +
               `git checkout develop &&` +
+              `git fetch &&` +
+              `git pull &&` +
               `git merge --no-ff ${userName}-${name} &&` +
-              `git add -A &&` +
-              `git commit -a -m "feature merged: ${userName}-${name}" &&` +
               `git branch -d ${userName}-${name} &&` +
               `git push origin develop`,
             (error, stdout, stderr) => {
@@ -72,9 +72,9 @@ module.exports = async (name, userName) => {
             `git add -A &&` +
               `git commit -a -m "merging feature ${userName}-${name}" &&` +
               `git checkout develop &&` +
+              `git fetch &&` +
+              `git pull &&` +
               `git merge --no-ff ${userName}-${name} &&` +
-              `git add -A &&` +
-              `git commit -a -m "feature merged: ${userName}-${name}" &&` +
               `git branch -d ${userName}-${name} &&` +
               `git push origin develop`,
             (error, stdout, stderr) => {
