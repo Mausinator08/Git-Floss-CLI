@@ -1,0 +1,12 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.2.0",
+    "tasks": [
+        {
+            "label": "post-install",
+            "type": "shell",
+            "command": "node post-install.js"
+        }
+    ]
+}
