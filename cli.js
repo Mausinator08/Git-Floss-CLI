@@ -23,6 +23,14 @@ const createMajorRelease = require("./scripts/create-major-release.js");
 const deleteLocalHotfix = require("./scripts/delete-local-hotfix.js");
 const mergeHotfixDevelop = require("./scripts/merge-hotfix-develop.js");
 const mergeHotfixMaster = require("./scripts/merge-hotfix-master.js");
+const checkoutDevelopBranch = require("./scripts/checkout-develop-branch.js");
+const checkoutHotfixBranch = require("./scripts/checkout-hotfix-branch.js");
+const checkoutMasterBranch = require("./scripts/checkout-master-branch.js");
+const checkoutReleaseBranch = require("./scripts/checkout-release-branch.js");
+const commitCurrentBranch = require("./scripts/commit-current-branch.js");
+const deleteFeatureBranch = require("./scripts/delete-feature-branch.js");
+const pushHotfixBranch = require("./scripts/push-hotfix-branch.js");
+const pushReleaseBranch = require("./scripts/push-release-branch.js");
 const dateFormater = require("./utilities/date-formater.js");
 //#endregion
 
@@ -33,24 +41,24 @@ const argv = yargs
     name: {
       description: "The name of the feature branch.",
       alias: "n",
-      type: "string",
+      type: "string"
     },
     userName: {
       description: "The name of the user creating the feature branch.",
       alias: "u",
-      type: "string",
+      type: "string"
     }
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
       description: "The name of the feature branch.",
       alias: "n",
-      type: "string",
+      type: "string"
     },
     userName: {
       description: "The name of the user merging the feature branch.",
       alias: "u",
-      type: "string",
+      type: "string"
     }
   })
   .command("create-release", "Stages develop for a new release.")
@@ -62,7 +70,7 @@ const argv = yargs
         description:
           "The current working directory for the process that ran the command.",
         alias: "d",
-        type: "string",
+        type: "string"
       }
     }
   )
@@ -73,31 +81,34 @@ const argv = yargs
       userName: {
         description: "The user name of the person committing the branch.",
         alias: "u",
-        type: "string",
+        type: "string"
       },
       message: {
         description: "The message for the commit.",
         alias: "m",
-        type: "string",
+        type: "string"
       }
     }
   )
   .command("merge-release-develop", "Merges release into develop")
-  .command("merge-release-master", "Merges release into master but does not push.")
+  .command(
+    "merge-release-master",
+    "Merges release into master but does not push."
+  )
   .command(
     "delete-local-release",
-    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)"
   )
   .command(
     "push-current-branch",
-    "Pushes the currently checked out branch to origin.",
+    "Pushes the currently checked out branch to origin."
   )
   .command("bump-hotfix-version", "Increases the hotfix version.", {
     cwd: {
       description:
         "The current working directory for the process that ran the command.",
       alias: "d",
-      type: "string",
+      type: "string"
     }
   })
   .command(
@@ -108,7 +119,7 @@ const argv = yargs
         description:
           "The current working directory for the process that ran the command.",
         alias: "d",
-        type: "string",
+        type: "string"
       }
     }
   )
@@ -116,22 +127,59 @@ const argv = yargs
     name: {
       description: "The name of the branch to checkout.",
       alias: "n",
-      type: "string",
+      type: "string"
     },
     userName: {
       description: "The user name of the person checking out the branch.",
       alias: "u",
-      type: "string",
+      type: "string"
     }
   })
   .command("create-hotfix", "Stages master for a patch.")
   .command("create-major-release", "Stages develop for a new major release.")
   .command(
     "delete-local-hotfix",
-    "Deletes the uneeded hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    "Deletes the uneeded hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)"
   )
   .command("merge-hotfix-develop", "Merges hotfix into develop")
-  .command("merge-hotfix-master", "Merges hotfix into master but does not push.")
+  .command(
+    "merge-hotfix-master",
+    "Merges hotfix into master but does not push."
+  )
+  .command(
+    "merge-hotfix-master",
+    "Merges hotfix into master but does not push."
+  )
+  .command("checkout-develop-branch", "Checks out develop.")
+  .command("checkout-hotfix-branch", "Checks out hotfix.", {
+    version: {
+      description: "The hotfix version to checkout.",
+      alias: "v",
+      type: "string"
+    }
+  })
+  .command("checkout-master-branch", "Checks out master.")
+  .command("checkout-release-branch", "Checks out release.", {
+    version: {
+      description: "The release version to checkout.",
+      alias: "v",
+      type: "string"
+    }
+  })
+  .command("delete-feature-branch", "Deletes the un-needed feature branch.", {
+    name: {
+      description: "The name of the branch to delete.",
+      alias: "n",
+      type: "string"
+    },
+    userName: {
+      description: "The user name of the person deleting the branch.",
+      alias: "u",
+      type: "string"
+    }
+  })
+  .command("push-hotfix-branch", "Pushes hotfix.")
+  .command("push-release-branch", "Pushes release.")
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -148,7 +196,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -161,7 +209,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -174,7 +222,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -187,7 +235,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -200,7 +248,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -213,7 +261,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -226,7 +274,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -239,7 +287,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -252,7 +300,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -265,7 +313,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -278,7 +326,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -291,7 +339,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -304,7 +352,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -317,7 +365,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -330,7 +378,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -343,7 +391,7 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });
@@ -356,7 +404,98 @@ try {
       })
       .catch((err) => {
         console.error(
-          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("checkout-develop-branch") === true) {
+    checkoutDevelopBranch()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("checkout-hotfix-branch") === true) {
+    checkoutHotfixBranch(argv.version)
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("checkout-master-branch") === true) {
+    checkoutMasterBranch()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("checkout-release-branch") === true) {
+    checkoutReleaseBranch(argv.version)
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("delete-feature-branch") === true) {
+    deleteFeatureBranch(argv.name, argv.userName)
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("push-hotfix-branch") === true) {
+    pushHotFixBranch()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("push-release-branch") === true) {
+    pushReleaseBranch()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`
         );
         console.error(err);
       });

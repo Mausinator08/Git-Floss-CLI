@@ -7,15 +7,21 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (userName, message) => {
+module.exports = async () => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
         case "win32":
           {
+            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
+              encoding: "utf-8",
+            });
+
+            const pkgJson = JSON.parse(pkg);
+            const version = `${pkgJson.version}`;
+
             exec(
-              `git add -A && ` +
-                `git commit -a -m "${userName}: ${message}"`,
+              `git push origin hotfix-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -29,7 +35,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nHotfix-${version} pushed to origin!`);
               },
             );
           }
@@ -37,8 +43,15 @@ module.exports = async (userName, message) => {
 
         case "darwin":
           {
+            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
+              encoding: "utf-8",
+            });
+
+            const pkgJson = JSON.parse(pkg);
+            const version = `${pkgJson.version}`;
+
             exec(
-              `git add -A && ` + `git commit -a -m "${userName}: ${message}"`,
+              `git push origin hotfix-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -52,7 +65,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nHotfix-${version} pushed to origin!`);
               },
             );
           }
@@ -60,8 +73,15 @@ module.exports = async (userName, message) => {
 
         case "linux":
           {
+            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
+              encoding: "utf-8",
+            });
+
+            const pkgJson = JSON.parse(pkg);
+            const version = `${pkgJson.version}`;
+
             exec(
-              `git add -A && ` + `git commit -a -m "${userName}: ${message}"`,
+              `git push origin hotfix-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -75,7 +95,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nHotfix-${version} pushed to origin!`);
               },
             );
           }
