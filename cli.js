@@ -39,7 +39,7 @@ const argv = yargs
       description: "The name of the user creating the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
@@ -51,7 +51,7 @@ const argv = yargs
       description: "The name of the user merging the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("create-release", "Stages develop for a new release.")
   .command(
@@ -63,7 +63,7 @@ const argv = yargs
           "The current working directory for the process that ran the command.",
         alias: "d",
         type: "string",
-      },
+      }
     }
   )
   .command(
@@ -81,7 +81,7 @@ const argv = yargs
         description: "The message for the commit.",
         alias: "m",
         type: "string",
-      },
+      }
     }
   )
   .command("merge-release-develop", "Merges release into develop")
@@ -111,7 +111,7 @@ const argv = yargs
           "The current working directory for the process that ran the command.",
         alias: "d",
         type: "string",
-      },
+      }
     }
   )
   .command("checkout-branch", "Checks out an existing branch.", {
