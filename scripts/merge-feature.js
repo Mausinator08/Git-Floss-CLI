@@ -14,8 +14,6 @@ module.exports = async (name, userName) => {
         case "win32":
           {
             exec(
-              `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
                 `git checkout develop &&` +
                 `git fetch &&` +
                 `git pull &&` +
@@ -44,8 +42,6 @@ module.exports = async (name, userName) => {
         case "darwin":
           {
             exec(
-              `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
                 `git checkout develop &&` +
                 `git fetch &&` +
                 `git pull &&` +
@@ -74,8 +70,6 @@ module.exports = async (name, userName) => {
         case "linux":
           {
             exec(
-              `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
                 `git checkout develop &&` +
                 `git fetch &&` +
                 `git pull &&` +
