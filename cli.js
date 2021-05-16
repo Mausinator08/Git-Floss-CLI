@@ -11,6 +11,7 @@ const mergeFeature = require("./scripts/merge-feature.js");
 const createRelease = require("./scripts/create-release.js");
 const bumpReleaseVersion = require("./scripts/bump-release-version.js");
 const commitCurrentBranch = require("./scripts/commit-current-branch.js");
+const mergeReleaseDevelop = require("./scripts/merge-release-develop.js");
 const dateFormater = require("./utilities/date-formater.js");
 //#endregion
 
@@ -21,24 +22,24 @@ const argv = yargs
     name: {
       description: "The name of the feature branch.",
       alias: "n",
-      type: "string"
+      type: "string",
     },
     userName: {
       description: "The name of the user creating the feature branch.",
       alias: "u",
-      type: "string"
+      type: "string",
     },
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
       description: "The name of the feature branch.",
       alias: "n",
-      type: "string"
+      type: "string",
     },
     userName: {
       description: "The name of the user merging the feature branch.",
       alias: "u",
-      type: "string"
+      type: "string",
     },
   })
   .command("create-release", "Stages develop for a new release.")
@@ -50,7 +51,7 @@ const argv = yargs
         description:
           "The current working directory for the process that ran the command.",
         alias: "d",
-        type: "string"
+        type: "string",
       },
     },
   )
@@ -59,13 +60,13 @@ const argv = yargs
     "Commits the currently checked out branch.",
     {
       userName: {
-        description:
-          "The user name of the person committing the branch.",
+        description: "The user name of the person committing the branch.",
         alias: "u",
-        type: "string"
+        type: "string",
       },
     },
   )
+  .command("merge-release-develop", "Commits the currently checked out branch.")
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -127,6 +128,19 @@ try {
       });
   } else if (argv._.includes("commit-current-branch") === true) {
     commitCurrentBranch(argv.userName)
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("merge-release-develop") === true) {
+    mergeReleaseDevelop()
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);

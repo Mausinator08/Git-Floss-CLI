@@ -19,16 +19,14 @@ module.exports = async () => {
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+                `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff release-${version} && ` +
+                `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -42,7 +40,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nRelease-${version} merged!`);
               },
             );
           }
@@ -50,21 +48,19 @@ module.exports = async () => {
 
         case "darwin":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
+            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
               encoding: "utf-8",
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+              `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff release-${version} && ` +
+                `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -78,7 +74,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nRelease-${version} merged!`);
               },
             );
           }
@@ -86,21 +82,19 @@ module.exports = async () => {
 
         case "linux":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
+            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
               encoding: "utf-8",
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+              `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff release-${version} && ` +
+                `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -114,7 +108,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nRelease-${version} merged!`);
               },
             );
           }
