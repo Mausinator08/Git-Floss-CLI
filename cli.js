@@ -64,7 +64,7 @@ const argv = yargs
         alias: "d",
         type: "string",
       },
-    },
+    }
   )
   .command(
     "commit-current-branch",
@@ -82,7 +82,7 @@ const argv = yargs
         alias: "m",
         type: "string",
       },
-    },
+    }
   )
   .command("merge-release-develop", "Merges release into develop")
   .command("merge-release-master", "Merges release into master but does not push.")
@@ -100,7 +100,7 @@ const argv = yargs
         "The current working directory for the process that ran the command.",
       alias: "d",
       type: "string",
-    },
+    }
   })
   .command(
     "bump-major-release-version",
@@ -112,7 +112,7 @@ const argv = yargs
         alias: "d",
         type: "string",
       },
-    },
+    }
   )
   .command("checkout-branch", "Checks out an existing branch.", {
     name: {
@@ -124,7 +124,7 @@ const argv = yargs
       description: "The user name of the person checking out the branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("create-hotfix", "Stages master for a patch.")
   .command("create-major-release", "Stages develop for a new major release.")
