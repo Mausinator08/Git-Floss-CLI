@@ -14,11 +14,11 @@ module.exports = async (name, userName) => {
         case "win32":
           {
             exec(
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
+                `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff ${userName}-${name} && ` +
+                `git branch -d ${userName}-${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -42,11 +42,11 @@ module.exports = async (name, userName) => {
         case "darwin":
           {
             exec(
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
+                `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff ${userName}-${name} && ` +
+                `git branch -d ${userName}-${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -70,11 +70,11 @@ module.exports = async (name, userName) => {
         case "linux":
           {
             exec(
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
+                `git checkout develop && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff ${userName}-${name} && ` +
+                `git branch -d ${userName}-${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {

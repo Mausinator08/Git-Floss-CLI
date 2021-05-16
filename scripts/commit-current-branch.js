@@ -14,7 +14,7 @@ module.exports = async (userName) => {
         case "win32":
           {
             exec(
-              `git add -A &&` +
+              `git add -A && ` +
                 `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -38,7 +38,7 @@ module.exports = async (userName) => {
         case "darwin":
           {
             exec(
-              `git add -A &&` +
+              `git add -A && ` +
                 `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -62,7 +62,7 @@ module.exports = async (userName) => {
         case "linux":
           {
             exec(
-              `git add -A &&` +
+              `git add -A && ` +
                 `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
