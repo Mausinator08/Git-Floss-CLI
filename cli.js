@@ -13,6 +13,8 @@ const bumpReleaseVersion = require("./scripts/bump-release-version.js");
 const commitCurrentBranch = require("./scripts/commit-current-branch.js");
 const mergeReleaseDevelop = require("./scripts/merge-release-develop.js");
 const mergeReleaseMaster = require("./scripts/merge-release-master.js");
+const deleteLocalRelease = require("./scripts/delete-local-release.js");
+const pushCurrentBranch = require("./scripts/push-current-branch.js");
 const dateFormater = require("./utilities/date-formater.js");
 //#endregion
 
@@ -69,6 +71,8 @@ const argv = yargs
   )
   .command("merge-release-develop", "Merges into develop")
   .command("merge-release-master", "Merges into master but does not push.")
+  .command("delete-local-release", "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)")
+  .command("push-current-branch", "Pushes the currently checked out branch to origin.")
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -156,6 +160,32 @@ try {
       });
   } else if (argv._.includes("merge-release-master") === true) {
     mergeReleaseMaster()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("delete-local-release") === true) {
+    deleteLocalRelease()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("push-current-branch") === true) {
+    pushCurrentBranch()
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
