@@ -49,7 +49,7 @@ module.exports = async () => {
 
         case "darwin":
           {
-            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
+            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
               encoding: "utf-8",
             });
 
@@ -84,7 +84,7 @@ module.exports = async () => {
 
         case "linux":
           {
-            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
+            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
               encoding: "utf-8",
             });
 
