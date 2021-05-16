@@ -7,7 +7,7 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (userName) => {
+module.exports = async (userName, message) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
@@ -15,7 +15,7 @@ module.exports = async (userName) => {
           {
             exec(
               `git add -A && ` +
-                `git commit -a -m "${userName} committing current branch`,
+                `git commit -a -m "${userName}: ${message}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -38,8 +38,7 @@ module.exports = async (userName) => {
         case "darwin":
           {
             exec(
-              `git add -A && ` +
-                `git commit -a -m "${userName} committing current branch`,
+              `git add -A && ` + `git commit -a -m "${userName}: ${message}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -62,8 +61,7 @@ module.exports = async (userName) => {
         case "linux":
           {
             exec(
-              `git add -A && ` +
-                `git commit -a -m "${userName} committing current branch`,
+              `git add -A && ` + `git commit -a -m "${userName}: ${message}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {

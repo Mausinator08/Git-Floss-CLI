@@ -1,32 +1,20 @@
 "use strict";
 
-/** @module scripts/create-release */
+/** @module scripts/create-feature */
 
 //#region Required
 const os = require("os");
 const { exec } = require("child_process");
-const fs = require("fs");
 //#endregion
 
-module.exports = async () => {
+module.exports = async (name, userName) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
         case "win32":
           {
-            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
-                `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -40,7 +28,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }
@@ -48,19 +36,8 @@ module.exports = async () => {
 
         case "darwin":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
-              `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -74,7 +51,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }
@@ -82,19 +59,8 @@ module.exports = async () => {
 
         case "linux":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
-              `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -108,7 +74,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }

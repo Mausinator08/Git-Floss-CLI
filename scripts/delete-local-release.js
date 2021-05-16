@@ -1,6 +1,6 @@
 "use strict";
 
-/** @module scripts/create-release */
+/** @module scripts/merge-feature */
 
 //#region Required
 const os = require("os");
@@ -22,11 +22,7 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-                `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git branch -d release-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -40,7 +36,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nDeleted release-${version}!`);
               },
             );
           }
@@ -56,11 +52,7 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git branch -d release-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -74,7 +66,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nDeleted release-${version}!`);
               },
             );
           }
@@ -90,11 +82,7 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+              `git branch -d release-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -108,7 +96,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nDeleted release-${version}!`);
               },
             );
           }

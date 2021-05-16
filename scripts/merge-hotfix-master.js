@@ -22,11 +22,11 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-                `git checkout develop && ` +
+              `git checkout master && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -40,7 +40,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }
@@ -56,11 +56,11 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout develop && ` +
+              `git checkout master && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -74,7 +74,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }
@@ -90,11 +90,11 @@ module.exports = async () => {
             const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout develop && ` +
+              `git checkout master && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff release-${version} && ` +
-                `git push origin develop`,
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -108,7 +108,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${version} merged!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }
