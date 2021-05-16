@@ -7,7 +7,7 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (name, userName) => {
+module.exports = async (userName) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
@@ -15,13 +15,7 @@ module.exports = async (name, userName) => {
           {
             exec(
               `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
-                `git push origin develop`,
+                `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -35,7 +29,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nBranch committed by ${userName}!`);
               },
             );
           }
@@ -45,13 +39,7 @@ module.exports = async (name, userName) => {
           {
             exec(
               `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
-                `git push origin develop`,
+                `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -65,7 +53,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nBranch committed by ${userName}!`);
               },
             );
           }
@@ -75,13 +63,7 @@ module.exports = async (name, userName) => {
           {
             exec(
               `git add -A &&` +
-                `git commit -a -m "merging feature ${userName}-${name}" &&` +
-                `git checkout develop &&` +
-                `git fetch &&` +
-                `git pull &&` +
-                `git merge --no-ff ${userName}-${name} &&` +
-                `git branch -d ${userName}-${name} &&` +
-                `git push origin develop`,
+                `git commit -a -m "${userName} committing current branch`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -95,7 +77,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nBranch committed by ${userName}!`);
               },
             );
           }
