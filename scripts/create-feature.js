@@ -28,7 +28,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${name} created!`);
+                resolve(`${stdout}\nFeature ${userName}-${name} created!`);
               },
             );
           }
@@ -51,7 +51,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${name} created!`);
+                resolve(`${stdout}\nFeature ${userName}-${name} created!`);
               },
             );
           }
@@ -74,7 +74,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${name} created!`);
+                resolve(`${stdout}\nFeature ${userName}-${name} created!`);
               },
             );
           }
