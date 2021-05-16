@@ -25,7 +25,7 @@ module.exports = async () => {
 
             exec(
               `git checkout -b release-${newVersion} develop &&` +
-                `${__dirname}\\.bin\\git-flow.exe bump-release-version --cwd=${process.cwd()} &&` +
+                `git-flow bump-release-version --cwd=${process.cwd()} &&` +
                 `git add -A &&` +
                 `git commit -a -m "Bumped version number to ${newVersion}." &&` +
                 `git push origin release-${newVersion}`,
