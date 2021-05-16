@@ -12,6 +12,7 @@ const createRelease = require("./scripts/create-release.js");
 const bumpReleaseVersion = require("./scripts/bump-release-version.js");
 const commitCurrentBranch = require("./scripts/commit-current-branch.js");
 const mergeReleaseDevelop = require("./scripts/merge-release-develop.js");
+const mergeReleaseMaster = require("./scripts/merge-release-master.js");
 const dateFormater = require("./utilities/date-formater.js");
 //#endregion
 
@@ -66,7 +67,8 @@ const argv = yargs
       },
     },
   )
-  .command("merge-release-develop", "Commits the currently checked out branch.")
+  .command("merge-release-develop", "Merges into develop")
+  .command("merge-release-master", "Merges into master but does not push.")
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -141,6 +143,19 @@ try {
       });
   } else if (argv._.includes("merge-release-develop") === true) {
     mergeReleaseDevelop()
+      .then((val) => {
+        console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+        console.log(val);
+        console.log("Done!");
+      })
+      .catch((err) => {
+        console.error(
+          `[Date: ${dateFormater.toString(new Date(), 126, true)}]`,
+        );
+        console.error(err);
+      });
+  } else if (argv._.includes("merge-release-master") === true) {
+    mergeReleaseMaster()
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
