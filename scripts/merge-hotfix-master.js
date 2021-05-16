@@ -19,16 +19,14 @@ module.exports = async () => {
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+              `git checkout master && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -42,7 +40,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }
@@ -55,16 +53,14 @@ module.exports = async () => {
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+              `git checkout master && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -78,7 +74,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }
@@ -91,16 +87,14 @@ module.exports = async () => {
             });
 
             const pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const version = `${pkgJson.version}`;
 
             exec(
-              `git checkout -b release-${newVersion} develop && ` +
-                `git-flow bump-release-version --cwd=${process.cwd()} && ` +
-                `git add -A && ` +
-                `git commit -a -m "Bumped version number to ${newVersion}." && ` +
-                `git push origin release-${newVersion}`,
+              `git checkout master && ` +
+                `git fetch && ` +
+                `git pull && ` +
+                `git merge --no-ff hotfix-${version} && ` +
+                `git tag -a ${version} -m "version ${version}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -114,7 +108,7 @@ module.exports = async () => {
                   }
                 }
 
-                resolve(`${stdout}\nRelease-${newVersion} created!`);
+                resolve(`${stdout}\nHotfix-${version} merged!`);
               },
             );
           }

@@ -1,6 +1,6 @@
 "use strict";
 
-/** @module scripts/merge-feature */
+/** @module scripts/create-feature */
 
 //#region Required
 const os = require("os");
@@ -14,12 +14,7 @@ module.exports = async (name, userName) => {
         case "win32":
           {
             exec(
-                `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -33,7 +28,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }
@@ -42,12 +37,7 @@ module.exports = async (name, userName) => {
         case "darwin":
           {
             exec(
-                `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -61,7 +51,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }
@@ -70,12 +60,7 @@ module.exports = async (name, userName) => {
         case "linux":
           {
             exec(
-                `git checkout develop && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
-                `git push origin develop`,
+              `git checkout ${userName}-${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -89,7 +74,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\n${userName}-${name} checked out!`);
               },
             );
           }

@@ -22,9 +22,7 @@ module.exports = async (cwd = null) => {
             );
 
             var pkgJson = JSON.parse(pkg);
-            const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+            const newVersion = `${pkgJson.version.split(".")[0]}.${pkgJson.version.split(".")[1]}.${parseInt(pkgJson.version.split(".")[2]) + 1}`;
 
             pkgJson.version = newVersion;
 
@@ -53,8 +51,8 @@ module.exports = async (cwd = null) => {
 
             var pkgJson = JSON.parse(pkg);
             const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+              pkgJson.version.split(".")[1]
+            }.${parseInt(pkgJson.version.split(".")[2]) + 1}`;
 
             pkgJson.version = newVersion;
 
@@ -83,8 +81,8 @@ module.exports = async (cwd = null) => {
 
             var pkgJson = JSON.parse(pkg);
             const newVersion = `${pkgJson.version.split(".")[0]}.${
-              parseInt(pkgJson.version.split(".")[1]) + 1
-            }.0`;
+              pkgJson.version.split(".")[1]
+            }.${parseInt(pkgJson.version.split(".")[2]) + 1}`;
 
             pkgJson.version = newVersion;
 
