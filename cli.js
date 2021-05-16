@@ -31,7 +31,7 @@ const argv = yargs
       description: "The name of the user creating the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
@@ -43,7 +43,7 @@ const argv = yargs
       description: "The name of the user merging the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("create-release", "Stages develop for a new release.")
   .command(
@@ -55,8 +55,8 @@ const argv = yargs
           "The current working directory for the process that ran the command.",
         alias: "d",
         type: "string",
-      },
-    },
+      }
+    }
   )
   .command(
     "commit-current-branch",
@@ -66,13 +66,26 @@ const argv = yargs
         description: "The user name of the person committing the branch.",
         alias: "u",
         type: "string",
-      },
+      }
     },
+    {
+      message: {
+        description: "The message for the commit.",
+        alias: "m",
+        type: "string",
+      }
+    }
   )
   .command("merge-release-develop", "Merges into develop")
   .command("merge-release-master", "Merges into master but does not push.")
-  .command("delete-local-release", "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)")
-  .command("push-current-branch", "Pushes the currently checked out branch to origin.")
+  .command(
+    "delete-local-release",
+    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+  )
+  .command(
+    "push-current-branch",
+    "Pushes the currently checked out branch to origin.",
+  )
   .help()
   .alias("help", "h").argv;
 //#endregion
@@ -133,7 +146,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("commit-current-branch") === true) {
-    commitCurrentBranch(argv.userName)
+    commitCurrentBranch(argv.userName, argv.message)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
