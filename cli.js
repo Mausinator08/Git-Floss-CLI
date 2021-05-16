@@ -75,8 +75,6 @@ const argv = yargs
         alias: "u",
         type: "string",
       },
-    },
-    {
       message: {
         description: "The message for the commit.",
         alias: "m",
