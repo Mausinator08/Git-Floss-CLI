@@ -39,7 +39,7 @@ const argv = yargs
       description: "The name of the user creating the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("merge-feature", "Merges a feature branch into develop.", {
     name: {
@@ -51,7 +51,7 @@ const argv = yargs
       description: "The name of the user merging the feature branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("create-release", "Stages develop for a new release.")
   .command(
@@ -63,8 +63,8 @@ const argv = yargs
           "The current working directory for the process that ran the command.",
         alias: "d",
         type: "string",
-      },
-    },
+      }
+    }
   )
   .command(
     "commit-current-branch",
@@ -81,8 +81,8 @@ const argv = yargs
         description: "The message for the commit.",
         alias: "m",
         type: "string",
-      },
-    },
+      }
+    }
   )
   .command("merge-release-develop", "Merges release into develop")
   .command("merge-release-master", "Merges release into master but does not push.")
@@ -100,7 +100,7 @@ const argv = yargs
         "The current working directory for the process that ran the command.",
       alias: "d",
       type: "string",
-    },
+    }
   })
   .command(
     "bump-major-release-version",
@@ -111,8 +111,8 @@ const argv = yargs
           "The current working directory for the process that ran the command.",
         alias: "d",
         type: "string",
-      },
-    },
+      }
+    }
   )
   .command("checkout-branch", "Checks out an existing branch.", {
     name: {
@@ -124,7 +124,7 @@ const argv = yargs
       description: "The user name of the person checking out the branch.",
       alias: "u",
       type: "string",
-    },
+    }
   })
   .command("create-hotfix", "Stages master for a patch.")
   .command("create-major-release", "Stages develop for a new major release.")
