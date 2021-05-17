@@ -5,6 +5,7 @@
 //#region Required
 const os = require("os");
 const { exec } = require("child_process");
+const fs = require("fs");
 //#endregion
 
 module.exports = async () => {
