@@ -27,7 +27,6 @@ const checkoutDevelopBranch = require("./scripts/checkout-develop-branch.js");
 const checkoutHotfixBranch = require("./scripts/checkout-hotfix-branch.js");
 const checkoutMasterBranch = require("./scripts/checkout-master-branch.js");
 const checkoutReleaseBranch = require("./scripts/checkout-release-branch.js");
-const commitCurrentBranch = require("./scripts/commit-current-branch.js");
 const deleteFeatureBranch = require("./scripts/delete-feature-branch.js");
 const pushHotfixBranch = require("./scripts/push-hotfix-branch.js");
 const pushReleaseBranch = require("./scripts/push-release-branch.js");
