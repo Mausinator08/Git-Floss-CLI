@@ -1,6 +1,6 @@
 {
   "name": "git-flow",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Usefull scripts for manipulating GIT.",
   "main": "cli.js",
   "repository": "https://mausinator08.visualstudio.com/GitFlow/_git/GitFlow",

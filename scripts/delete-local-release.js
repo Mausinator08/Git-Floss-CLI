@@ -8,19 +8,12 @@ const { exec } = require("child_process");
 const fs = require("fs");
 //#endregion
 
-module.exports = async () => {
+module.exports = async (version) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
         case "win32":
           {
-            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
               `git branch -d release-${version}`,
               (error, stdout, stderr) => {
@@ -44,13 +37,6 @@ module.exports = async () => {
 
         case "darwin":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
               `git branch -d release-${version}`,
               (error, stdout, stderr) => {
@@ -74,13 +60,6 @@ module.exports = async () => {
 
         case "linux":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
-            });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
-
             exec(
               `git branch -d release-${version}`,
               (error, stdout, stderr) => {
