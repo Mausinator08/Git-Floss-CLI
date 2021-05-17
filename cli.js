@@ -105,7 +105,7 @@ const argv = yargs
   .command("merge-release-develop", "Merges release into develop")
   .command(
     "merge-release-master",
-    "Merges release into master but does not push."
+    "Merges release into master and deletes the local release branch."
   )
   .command(
     "delete-local-release",
@@ -196,11 +196,7 @@ const argv = yargs
   .command("merge-hotfix-develop", "Merges hotfix into develop")
   .command(
     "merge-hotfix-master",
-    "Merges hotfix into master but does not push."
-  )
-  .command(
-    "merge-hotfix-master",
-    "Merges hotfix into master but does not push."
+    "Merges hotfix into master and deletes local hotfix branch."
   )
   .command("checkout-develop-branch", "Checks out develop.")
   .command("checkout-hotfix-branch", "Checks out hotfix.", {
@@ -266,7 +262,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-release") === true) {
-    createRelease(argv.nodejs ? argv.nodejs : false)
+    createRelease(argv.nodejs ? (argv.nodejs === "true" ? true : false) : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -281,7 +277,7 @@ try {
   } else if (argv._.includes("bump-release-version") === true) {
     bumpReleaseVersion(
       argv.cwd ? argv.cwd : null,
-      argv.nodejs ? argv.nodejs : false
+      argv.nodejs ? (argv.nodejs === "true" ? true : false) : false
     )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -362,7 +358,7 @@ try {
   } else if (argv._.includes("bump-hotfix-version") === true) {
     bumpHotfixVersion(
       argv.cwd ? argv.cwd : null,
-      argv.nodejs ? argv.nodejs : false
+      argv.nodejs ? (argv.nodejs === "true" ? true : false) : false
     )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -378,7 +374,7 @@ try {
   } else if (argv._.includes("bump-major-release-version") === true) {
     bumpMajorReleaseVersion(
       argv.cwd ? argv.cwd : null,
-      argv.nodejs ? argv.nodejs : false
+      argv.nodejs ? (argv.nodejs === "true" ? true : false) : false
     )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -405,7 +401,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-hotfix") === true) {
-    createHotfix(argv.nodejs ? argv.nodejs : false)
+    createHotfix(argv.nodejs ? (argv.nodejs === "true" ? true : false) : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -418,7 +414,9 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-major-release") === true) {
-    createMajorRelease(argv.nodejs ? argv.nodejs : false)
+    createMajorRelease(
+      argv.nodejs ? (argv.nodejs === "true" ? true : false) : false
+    )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);

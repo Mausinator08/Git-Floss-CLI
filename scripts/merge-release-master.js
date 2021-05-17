@@ -23,8 +23,9 @@ module.exports = async () => {
                 `git fetch && ` +
                 `git pull && ` +
                 `git merge --no-ff release-${version} && ` +
-                `git tag -a ${version} -m "version ${version}" &&` +
-                `git branch -d release-${version}`,
+                `git tag -a ${version} -m "version ${version}" && ` +
+                `git branch -d release-${version} && ` +
+                `git push origin master`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -56,22 +57,23 @@ module.exports = async () => {
                 `git pull && ` +
                 `git merge --no-ff release-${version} && ` +
                 `git tag -a ${version} -m "version ${version}"` +
-                `git branch -d release-${version}`,
+                `git branch -d release-${version} && ` +
+                `git push origin master`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
                     reject(
                       new Error(
                         `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
+                          `output:\n${stdout}\n\n${stderr}`
+                      )
                     );
                     return;
                   }
                 }
 
                 resolve(`${stdout}\nRelease-${version} merged!`);
-              },
+              }
             );
           }
           break;
@@ -88,7 +90,8 @@ module.exports = async () => {
                 `git pull && ` +
                 `git merge --no-ff release-${version} && ` +
                 `git tag -a ${version} -m "version ${version}" && ` +
-                `git branch -d release-${version}`,
+                `git branch -d release-${version} && ` +
+                `git push origin master`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
