@@ -23,7 +23,7 @@ module.exports = async () => {
                 `git fetch && ` +
                 `git pull && ` +
                 `git merge --no-ff release-${version} && ` +
-                `git tag -a ${version} -m "version ${version}"` +
+                `git tag -a ${version} -m "version ${version}" &&` +
                 `git branch -d release-${version}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
