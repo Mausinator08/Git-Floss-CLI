@@ -60,7 +60,14 @@ const argv = yargs
       type: "string"
     }
   })
-  .command("create-release", "Stages develop for a new release.")
+  .command("create-release", "Stages develop for a new release.", {
+    nodejs: {
+      description:
+        "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+      alias: "j",
+      type: "string"
+    }
+  })
   .command(
     "bump-release-version",
     "Increases the minor release version and resets the hotfix version to 0.",
@@ -69,6 +76,12 @@ const argv = yargs
         description:
           "The current working directory for the process that ran the command.",
         alias: "d",
+        type: "string"
+      },
+      nodejs: {
+        description:
+          "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+        alias: "j",
         type: "string"
       }
     }
@@ -96,7 +109,14 @@ const argv = yargs
   )
   .command(
     "delete-local-release",
-    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)"
+    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    {
+      version: {
+        description: "The release version (Major or Minor)",
+        alias: "v",
+        type: "string"
+      }
+    }
   )
   .command(
     "push-current-branch",
@@ -108,6 +128,12 @@ const argv = yargs
         "The current working directory for the process that ran the command.",
       alias: "d",
       type: "string"
+    },
+    nodejs: {
+      description:
+        "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+      alias: "j",
+      type: "string"
     }
   })
   .command(
@@ -118,6 +144,12 @@ const argv = yargs
         description:
           "The current working directory for the process that ran the command.",
         alias: "d",
+        type: "string"
+      },
+      nodejs: {
+        description:
+          "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+        alias: "j",
         type: "string"
       }
     }
@@ -134,11 +166,32 @@ const argv = yargs
       type: "string"
     }
   })
-  .command("create-hotfix", "Stages master for a patch.")
-  .command("create-major-release", "Stages develop for a new major release.")
+  .command("create-hotfix", "Stages master for a patch.", {
+    nodejs: {
+      description:
+        "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+      alias: "j",
+      type: "string"
+    }
+  })
+  .command("create-major-release", "Stages develop for a new major release.", {
+    nodejs: {
+      description:
+        "Whether the target project is a NodeJS/Typescript project with a package.json file.",
+      alias: "j",
+      type: "string"
+    }
+  })
   .command(
     "delete-local-hotfix",
-    "Deletes the uneeded hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)"
+    "Deletes the uneeded hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    {
+      version: {
+        description: "Hotfix version.",
+        alias: "v",
+        type: "string"
+      }
+    }
   )
   .command("merge-hotfix-develop", "Merges hotfix into develop")
   .command(
@@ -213,7 +266,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-release") === true) {
-    createRelease()
+    createRelease(nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -226,7 +279,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-release-version") === true) {
-    bumpReleaseVersion(argv.cwd ? argv.cwd : null)
+    bumpReleaseVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -278,7 +331,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("delete-local-release") === true) {
-    deleteLocalRelease()
+    deleteLocalRelease(argv.version)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -304,7 +357,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-hotfix-version") === true) {
-    bumpHotfixVersion(argv.cwd ? argv.cwd : null)
+    bumpHotfixVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -317,7 +370,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-major-release-version") === true) {
-    bumpMajorReleaseVersion(argv.cwd ? argv.cwd : null)
+    bumpMajorReleaseVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -343,7 +396,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-hotfix") === true) {
-    createHotfix()
+    createHotfix(nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -356,7 +409,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-major-release") === true) {
-    createMajorRelease()
+    createMajorRelease(nodejs ? nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -369,7 +422,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("delete-local-hotfix") === true) {
-    deleteLocalHotfix()
+    deleteLocalHotfix(argv.version)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -473,7 +526,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("push-hotfix-branch") === true) {
-    pushHotFixBranch()
+    pushHotfixBranch()
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);

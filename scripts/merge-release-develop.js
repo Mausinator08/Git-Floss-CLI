@@ -14,12 +14,9 @@ module.exports = async () => {
       switch (os.platform()) {
         case "win32":
           {
-            const pkg = fs.readFileSync(process.cwd() + "\\package.json", {
-              encoding: "utf-8",
+            const version = fs.readFileSync(process.cwd() + "\\VERSION", {
+              encoding: "utf-8"
             });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
 
             exec(
                 `git checkout develop && ` +
@@ -48,12 +45,9 @@ module.exports = async () => {
 
         case "darwin":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
+            const version = fs.readFileSync(process.cwd() + "/VERSION", {
+              encoding: "utf-8"
             });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
 
             exec(
               `git checkout develop && ` +
@@ -82,12 +76,9 @@ module.exports = async () => {
 
         case "linux":
           {
-            const pkg = fs.readFileSync(process.cwd() + "/package.json", {
-              encoding: "utf-8",
+            const version = fs.readFileSync(process.cwd() + "/VERSION", {
+              encoding: "utf-8"
             });
-
-            const pkgJson = JSON.parse(pkg);
-            const version = `${pkgJson.version}`;
 
             exec(
               `git checkout develop && ` +
