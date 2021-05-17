@@ -266,7 +266,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-release") === true) {
-    createRelease(nodejs ? nodejs : false)
+    createRelease(argv.nodejs ? argv.nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -279,7 +279,10 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-release-version") === true) {
-    bumpReleaseVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
+    bumpReleaseVersion(
+      argv.cwd ? argv.cwd : null,
+      argv.nodejs ? argv.nodejs : false
+    )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -357,7 +360,10 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-hotfix-version") === true) {
-    bumpHotfixVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
+    bumpHotfixVersion(
+      argv.cwd ? argv.cwd : null,
+      argv.nodejs ? argv.nodejs : false
+    )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -370,7 +376,10 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("bump-major-release-version") === true) {
-    bumpMajorReleaseVersion(argv.cwd ? argv.cwd : null, nodejs ? nodejs : false)
+    bumpMajorReleaseVersion(
+      argv.cwd ? argv.cwd : null,
+      argv.nodejs ? argv.nodejs : false
+    )
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -396,7 +405,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-hotfix") === true) {
-    createHotfix(nodejs ? nodejs : false)
+    createHotfix(argv.nodejs ? argv.nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
@@ -409,7 +418,7 @@ try {
         console.error(err);
       });
   } else if (argv._.includes("create-major-release") === true) {
-    createMajorRelease(nodejs ? nodejs : false)
+    createMajorRelease(argv.nodejs ? argv.nodejs : false)
       .then((val) => {
         console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
         console.log(val);
