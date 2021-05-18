@@ -1,6 +1,6 @@
 {
   "name": "git-floss",
-  "version": "1.0.2",
+  "version": "1.2.1",
   "description": "Usefull scripts for manipulating GIT.",
   "main": "cli.js",
   "repository": "https://github.com/Mausinator08/Git-Floss-CLI.git",

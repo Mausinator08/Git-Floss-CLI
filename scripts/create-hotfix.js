@@ -24,7 +24,7 @@ module.exports = async (nodejs = false) => {
 
             exec(
               `git checkout -b hotfix-${newVersion} master && ` +
-                `git-flow bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
+                `git-floss bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
                   nodejs === false ? "false" : "true"
                 } && ` +
                 `git add -A && ` +
@@ -61,7 +61,7 @@ module.exports = async (nodejs = false) => {
 
             exec(
               `git checkout -b hotfix-${newVersion} master && ` +
-                `git-flow bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
+                `git-floss bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
                   nodejs === false ? "false" : "true"
                 } && ` +
                 `git add -A && ` +
@@ -98,7 +98,7 @@ module.exports = async (nodejs = false) => {
 
             exec(
               `git checkout -b hotfix-${newVersion} master && ` +
-                `git-flow bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
+                `git-floss bump-hotfix-version --cwd=${process.cwd()} --nodejs=${
                   nodejs === false ? "false" : "true"
                 } && ` +
                 `git add -A && ` +
