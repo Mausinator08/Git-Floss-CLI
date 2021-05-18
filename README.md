@@ -1,20 +1,107 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Git-Floss is a CLI tool designed to work either in command-line only, or to be used in a GUI to manage git repositories for projects whether a NodeJS project or other. GUI project will be a separate project and is a work-in-progress.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Quick-Start:
+
+### Feature-Branches:
+
+A feature branch is (usually) a local branch. It branches from develop. It merges back into develop, but never master. That’s where release branches come in. It can be named anything valid in git, except for release-<version>, hotfix-<version>, develop, and master.
+
+#### [Not supported yet]
+
+|    If co-workers need to assist with a feature, the feature can be pushed to the remote repository, and locally created and pulled by the assisting developer. (This |    is where the GUI will come in handy later to avoid confusion and mistakes by keeping track of “public” features, releases, and hotfixes, and which users are    |    allowed to create, pull, update, merge, and delete for each type of branch, stored in a database of some kind.)
+
+#### [End - Not supported yet]
+
+The following flow is recommended for incorporating a feature.
+
+1. `git-floss create-feature -u “<userName>” -n “<feature-name>”`
+2. Add and edit code as needed.
+3. `git-floss commit-current-branch -u “<userName>” -n “<feature-name>”`
+4. `git-floss merge-feature -u “<userName>” -n “<feature-name>”`
+
+When a project is ready for a release to production, all features for that release must be committed and merged into develop like above. Then the following flow takes place:
+
+1. `git-floss create-release -j “<true or false goes here to indicate whether this is for a NodeJS/Typescript project with a `package.json` file.” ` (`git-floss create-release -j “true”`)
+   1. This creates a release branch from develop.
+2. Test and fix bugs in this release-<version> branch, committing and pushing as needed.
+3. Once all known bugs are fixed, while on the current release branch, type `git-floss merge-release-develop`.
+   1. Order matters here! If merged to master first, the release branch is deleted. Merge to develop like above first!
+4. `git-floss merge-release-master`
+   1. Again, order matters!
+
+If something is later found in production that needs to be fixed, that’s where hotfixes come in. Hotfixes are branched from master. The process is the same like above for release branches, except replace the word release with hotfix in the commands.
+
+Finally, when you are ready for the big `1.0.0` release, the following flow occurs:
+
+1. `git-floss create-major-release -j “<true or flase>”` (`git-floss create-major-release -j "true"`)
+2. Test and fix any straggling bugs in this branch, committing and pushing as needed.
+3. Once all known bugs are fixed, while on the current release branch, type `git-floss merge-release-develop`.
+   1. Order matters here! If merged to master first, the release branch is deleted. Merge to develop like above first!
+4. `git-floss merge-release-master`
+   1. Again, order matters!
+
+If working collaboratively, ensure the feature has your unique user name for the project and a valid name, then type the following command:
+
+`git-floss push-feature -u "<userName>" -n "<feature-name>"`
+
+Command Reference:
+
+git-floss [command]
+
+Commands:
+  git-floss create-feature              Creates a feature branch based on develop.
+  git-floss merge-feature               Merges a feature branch into develop.
+  git-floss create-release              Stages develop for a new release.
+  git-floss bump-release-version        Increases the minor release version and
+                                     resets the hotfix version to 0.
+  git-floss commit-current-branch       Commits the currently checked out branch.
+  git-floss merge-release-develop       Merges release into develop
+  git-floss merge-release-master        Merges release into master and deletes the
+                                     local release branch.
+  git-floss delete-local-release        Deletes the un-needed release... (ONLY AFTER
+                                     MERGING INTO MASTER AND DEVELOP!!!)
+  git-floss push-current-branch         Pushes the currently checked out branch to
+                                     origin.
+  git-floss bump-hotfix-version         Increases the hotfix version.
+  git-floss bump-major-release-version  Increases the major release version and
+                                     resets the hotfix version and minor release
+                                     version to 0.
+  git-floss checkout-branch             Checks out an existing branch.
+  git-floss create-hotfix               Stages master for a patch.
+  git-floss create-major-release        Stages develop for a new major release.
+  git-floss delete-local-hotfix         Deletes the un-needed hotfix... (ONLY AFTER
+                                     MERGING INTO MASTER AND DEVELOP!!!)
+  git-floss merge-hotfix-develop        Merges hotfix into develop
+  git-floss merge-hotfix-master         Merges hotfix into master and deletes local
+                                     hotfix branch.
+  git-floss checkout-develop-branch     Checks out develop.
+  git-floss checkout-hotfix-branch      Checks out hotfix.
+  git-floss checkout-master-branch      Checks out master.
+  git-floss checkout-release-branch     Checks out release.
+  git-floss delete-feature-branch       Deletes the un-needed feature branch.
+  git-floss push-hotfix-branch          Pushes hotfix.
+  git-floss push-release-branch         Pushes release.
+
+Options:
+      --version  Show version number                                   [boolean]
+  -h, --help     Show help                                             [boolean]
+
+# Build and Install
+
+You will need nvm for Windows on Windows, or nvm if on Linux or Mac OS.
+
+This project has been tested with node 14.17.0 in the LTS releases.
+
+After nvm is installed, open a command-line or terminal, and type:
+
+1. `nvm install 14.17.0`
+2. `nvm use 14.17.0`
+3. `npm install` - This will download and install project dependencies.
+4. `npm run global-install` - This will install and package the project to it’s running OS’s executable as well as set environment variable `PATH` to add `git-floss` path to the executable so that `git-floss` can be typed instead of <path-to-git-floss>/git-floss.
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Feel free to fork this project or create a pull request to contribute!
