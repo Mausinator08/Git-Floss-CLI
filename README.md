@@ -3,6 +3,21 @@ Git-Floss is a CLI tool designed to work either in command-line only, or to be u
 
 # Getting Started
 
+## Dependencies:
+
+- [NVM](https://github.com/nvm-sh/nvm.git)
+- [NVM for Windows](https://github.com/coreybutler/nvm-windows.git)
+  - [Installer (Needs to be unzipped to execute nvm_setup.exe)](https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-setup.zip)
+- [GIT-CLI 64bit](https://github.com/git-for-windows/git/releases/download/v2.31.1.windows.1/Git-2.31.1-64-bit.exe) or [GIT-CLI 32bit](https://github.com/git-for-windows/git/releases/download/v2.31.1.windows.1/Git-2.31.1-32-bit.exe)
+
+## Please Read for Reference:
+
+The following article is what inspired me to create this project: [A Successful GIT Branching Model](https://nvie.com/posts/a-successful-git-branching-model/)
+
+Here is an example image from the above article describing what projects using this tool might look like:
+
+![GIT Branching Model](https://nvie.com/img/git-model@2x.png)
+
 ## Quick-Start:
 
 ### Feature-Branches:
