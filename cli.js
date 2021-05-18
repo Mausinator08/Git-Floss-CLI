@@ -109,7 +109,7 @@ const argv = yargs
   )
   .command(
     "delete-local-release",
-    "Deletes the uneeded release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    "Deletes the un-needed release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
     {
       version: {
         description: "The release version (Major or Minor)",
@@ -184,7 +184,7 @@ const argv = yargs
   })
   .command(
     "delete-local-hotfix",
-    "Deletes the uneeded hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
+    "Deletes the un-needed hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)",
     {
       version: {
         description: "Hotfix version.",
