@@ -3,11 +3,12 @@
   "version": "1.0.2",
   "description": "Usefull scripts for manipulating GIT.",
   "main": "cli.js",
-  "repository": "https://mausinator08.visualstudio.com/GitFlow/_git/GitFlow",
+  "repository": "https://github.com/Mausinator08/Git-Floss-CLI.git",
   "author": "John Maus <mauscomp@live.com>",
   "license": "SEE LICENSE IN LICENSE.txt",
   "private": true,
   "scripts": {
+    "global-install": "npm install -g git+https://github.com/Mausinator08/Git-Floss-CLI.git",
     "postinstall": "node post-install.js"
   },
   "pkg": {
