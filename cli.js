@@ -206,7 +206,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		.command('push-release-branch', 'Pushes release.')
 		.help()
 		.alias('help', 'h')
-		.parse(process.argv.slice(2).argv, {}, (err, argv, output) => {
+		.parse(process.argv.slice(2), {}, (err, argv, output) => {
 			if (err) {
 				console.error(err);
 				return;
