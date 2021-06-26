@@ -66,7 +66,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 			nodejs: {
 				description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 				alias: 'j',
-				type: 'string'
+				type: 'boolean'
 			}
 		})
 		.command('bump-release-version', 'Increases the minor release version and resets the hotfix version to 0.', {
@@ -78,7 +78,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 			nodejs: {
 				description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 				alias: 'j',
-				type: 'string'
+				type: 'boolean'
 			}
 		})
 		.command('commit-current-branch', 'Commits the currently checked out branch.', {
@@ -116,7 +116,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 			nodejs: {
 				description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 				alias: 'j',
-				type: 'string'
+				type: 'boolean'
 			}
 		})
 		.command(
@@ -131,7 +131,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 				nodejs: {
 					description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 					alias: 'j',
-					type: 'string'
+					type: 'boolean'
 				}
 			}
 		)
@@ -151,14 +151,14 @@ const regexReplace = require('./utilities/regexReplace.js');
 			nodejs: {
 				description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 				alias: 'j',
-				type: 'string'
+				type: 'boolean'
 			}
 		})
 		.command('create-major-release', 'Stages develop for a new major release.', {
 			nodejs: {
 				description: 'Whether the target project is a NodeJS/Typescript project with a package.json file.',
 				alias: 'j',
-				type: 'string'
+				type: 'boolean'
 			}
 		})
 		.command(
@@ -237,7 +237,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('create-release') === true) {
-						createRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+						createRelease(argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -250,7 +250,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 					} else if (argv._.includes('bump-release-version') === true) {
 						bumpReleaseVersion(
 							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+							argv.nodejs ? true : false
 						)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -319,7 +319,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 					} else if (argv._.includes('bump-hotfix-version') === true) {
 						bumpHotfixVersion(
 							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+							argv.nodejs ? true : false
 						)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -333,7 +333,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 					} else if (argv._.includes('bump-major-release-version') === true) {
 						bumpMajorReleaseVersion(
 							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+							argv.nodejs ? true : false
 						)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
@@ -356,7 +356,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('create-hotfix') === true) {
-						createHotfix(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+						createHotfix(argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -367,7 +367,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('create-major-release') === true) {
-						createMajorRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+						createMajorRelease(argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
