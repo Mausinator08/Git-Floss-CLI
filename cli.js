@@ -228,7 +228,7 @@ const argv = yargs
   })
   .command("push-hotfix-branch", "Pushes hotfix.")
   .command("push-release-branch", "Pushes release.")
-  .help()
+  .help("git-floss", "A command-line utility to enforce a standard workflow for git source control management.", true)
   .alias("help", "h").argv;
 //#endregion
 
