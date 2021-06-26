@@ -99,7 +99,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 			'delete-local-release',
 			'Deletes the un-needed release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)',
 			{
-				version: {
+				ver: {
 					description: 'The release version (Major or Minor)',
 					alias: 'v',
 					type: 'string'
@@ -165,7 +165,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 			'delete-local-hotfix',
 			'Deletes the un-needed hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)',
 			{
-				version: {
+				ver: {
 					description: 'Hotfix version.',
 					alias: 'v',
 					type: 'string'
@@ -176,7 +176,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		.command('merge-hotfix-master', 'Merges hotfix into master and deletes local hotfix branch.')
 		.command('checkout-develop-branch', 'Checks out develop.')
 		.command('checkout-hotfix-branch', 'Checks out hotfix.', {
-			version: {
+			ver: {
 				description: 'The hotfix version to checkout.',
 				alias: 'v',
 				type: 'string'
@@ -184,7 +184,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		})
 		.command('checkout-master-branch', 'Checks out master.')
 		.command('checkout-release-branch', 'Checks out release.', {
-			version: {
+			ver: {
 				description: 'The release version to checkout.',
 				alias: 'v',
 				type: 'string'
@@ -212,7 +212,20 @@ const regexReplace = require('./utilities/regexReplace.js');
 				return;
 			}
 
-			if (argv._.length > 0) {
+			if (argv.help) {
+				if (argv.help === true) {
+					if (output) {
+						const newOutput = regexReplace(output, 'cli.js', 'git-floss');
+						console.log(newOutput);
+						return;
+					}
+				}
+
+				console.warn('--help has been disabled!');
+				return;
+			}
+
+			if (argv._.length > 0 && (argv.help === false || argv.help === undefined || argv.help === null)) {
 				try {
 					if (argv._.includes('create-feature') === true) {
 						createFeature(argv.name, argv.userName)
@@ -248,10 +261,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('bump-release-version') === true) {
-						bumpReleaseVersion(
-							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? true : false
-						)
+						bumpReleaseVersion(argv.cwd ? argv.cwd : null, argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -295,7 +305,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('delete-local-release') === true) {
-						deleteLocalRelease(argv.version)
+						deleteLocalRelease(argv.ver)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -317,10 +327,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('bump-hotfix-version') === true) {
-						bumpHotfixVersion(
-							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? true : false
-						)
+						bumpHotfixVersion(argv.cwd ? argv.cwd : null, argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -331,10 +338,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('bump-major-release-version') === true) {
-						bumpMajorReleaseVersion(
-							argv.cwd ? argv.cwd : null,
-							argv.nodejs ? true : false
-						)
+						bumpMajorReleaseVersion(argv.cwd ? argv.cwd : null, argv.nodejs ? true : false)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -378,7 +382,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('delete-local-hotfix') === true) {
-						deleteLocalHotfix(argv.version)
+						deleteLocalHotfix(argv.ver)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -422,7 +426,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('checkout-hotfix-branch') === true) {
-						checkoutHotfixBranch(argv.version)
+						checkoutHotfixBranch(argv.ver)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -444,7 +448,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('checkout-release-branch') === true) {
-						checkoutReleaseBranch(argv.version)
+						checkoutReleaseBranch(argv.ver)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -494,13 +498,6 @@ const regexReplace = require('./utilities/regexReplace.js');
 				}
 
 				console.log(output);
-				return;
-			}
-
-			if (output) {
-				const newOutput = regexReplace(output, 'cli.js', 'git-floss');
-				console.log(newOutput);
-				return;
 			}
 		});
 
