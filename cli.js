@@ -37,7 +37,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 (async () => {
 	//#region command line arguments
 	/** @type {Object} - Object - command line arguments */
-	var argv = yargs
+	var args = yargs
 		.command('create-feature', 'Creates a feature branch based on develop.', {
 			name: {
 				description: 'The name of the feature branch.',
@@ -206,7 +206,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		.command('push-release-branch', 'Pushes release.')
 		.help()
 		.alias('help', 'h')
-		.parse(process.argv, (err, argv, output) => {
+		.parse(process.argv, {}, (err, argv, output) => {
 			if (err) {
 				console.error(err);
 				return;
@@ -217,7 +217,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 				return;
 			}
 
-			if (argv._.includes('help') === false) {
+			if (argv._.length > 2) {
 				try {
 					if (argv._.includes('create-feature') === true) {
 						createFeature(argv.name, argv.userName)
