@@ -1,4 +1,5 @@
-# Introduction 
+# Introduction
+
 Git-Floss is a CLI tool designed to work either in command-line only, or to be used in a GUI to manage git repositories for projects whether a NodeJS project or other. GUI project will be a separate project and is a work-in-progress.
 
 # Getting Started
@@ -62,63 +63,283 @@ If working collaboratively, ensure the feature has your unique user name for the
 
 `git-floss push-feature -u "<userName>" -n "<feature-name>"`
 
-Command Reference:
+#### Command Reference:
 
+```
 git-floss [command]
 
-Commands:
-  git-floss create-feature              Creates a feature branch based on develop.
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
 
-  git-floss merge-feature               Merges a feature branch into develop.
+##### Commands:
 
-  git-floss create-release              Stages develop for a new release.
+    git-floss create-feature
+    
+    Creates a feature branch based on develop.
+    
+    Options:
+          --version   Show version number                                      [boolean]
+      -h, --help      Show help                                                [boolean]
+      -n, --name      The name of the feature branch.                           [string]
+      -u, --userName  The name of the user creating the feature branch.         [string]
+```
+git-floss merge-feature
 
-  git-floss bump-release-version        Increases the minor release version and resets the hotfix version to 0.
-
-  git-floss commit-current-branch       Commits the currently checked out branch.
-
-  git-floss merge-release-develop       Merges release into develop
-
-  git-floss merge-release-master        Merges release into master and deletes the local release branch.
-
-  git-floss delete-local-release        Deletes the un-needed release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)
-
-  git-floss push-current-branch         Pushes the currently checked out branch to origin.
-
-  git-floss bump-hotfix-version         Increases the hotfix version.
-
-  git-floss bump-major-release-version  Increases the major release version and resets the hotfix version and minor release version to 0.
-
-  git-floss checkout-branch             Checks out an existing branch.
-
-  git-floss create-hotfix               Stages master for a patch.
-
-  git-floss create-major-release        Stages develop for a new major release.
-
-  git-floss delete-local-hotfix         Deletes the un-needed hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)
-
-  git-floss merge-hotfix-develop        Merges hotfix into develop
-
-  git-floss merge-hotfix-master         Merges hotfix into master and deletes local hotfix branch.
-
-  git-floss checkout-develop-branch     Checks out develop.
-
-  git-floss checkout-hotfix-branch      Checks out hotfix.
-
-  git-floss checkout-master-branch      Checks out master.
-
-  git-floss checkout-release-branch     Checks out release.
-
-  git-floss delete-feature-branch       Deletes the un-needed feature branch.
-
-  git-floss push-hotfix-branch          Pushes hotfix.
-
-  git-floss push-release-branch         Pushes release.
+Merges a feature branch into develop.
 
 Options:
-      --version  Show version number                                   [boolean]
+      --version   Show version number                                      [boolean]
+  -h, --help      Show help                                                [boolean]
+  -n, --name      The name of the feature branch.                           [string]
+  -u, --userName  The name of the user merging the feature branch.          [string]
+```
 
-​      -h, --help     Show help                                                 [boolean]
+```
+git-floss delete-feature-branch
+
+Deletes the un-needed feature branch.
+
+Options:
+      --version   Show version number                                      [boolean]
+  -h, --help      Show help                                                [boolean]
+  -n, --name      The name of the branch to delete.                         [string]
+  -u, --userName  The user name of the person deleting the branch.          [string]
+```
+
+```
+git-floss create-release
+
+Stages develop for a new release.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript 
+                 project with a package.json file.                          [string]
+```
+
+```
+git-floss create-major-release
+
+Stages develop for a new major release.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript 
+                 project with a package.json file.                          [string]
+```
+
+```
+git-floss merge-release-develop
+
+Merges release into develop
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss merge-release-master
+
+Merges release into master and deletes the local release branch.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss checkout-release-branch
+
+Checks out release.
+
+Options:
+  -v, --version  The release version to checkout.                           [string]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss push-release-branch
+
+Pushes release.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss bump-release-version
+
+Increases the minor release version and resets the hotfix version to 0.
+
+Options:
+      --version  Show version number                                      [boolean]
+  -h, --help     Show help                                                [boolean]
+  -d, --cwd      The current working directory for the process 
+                 that ran the command.                                     [string]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript 
+                 project with a package.json file.                         [string]
+```
+
+```
+git-floss bump-major-release-version
+
+Increases the major release version and resets the hotfix version and minor
+release version to 0.
+
+Options:
+      --version  Show version number                                      [boolean]
+  -h, --help     Show help                                                [boolean]
+  -d, --cwd      The current working directory for the process 
+                 that ran the command.                                     [string]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript
+                 project with a package.json file.                         [string]
+```
+
+```
+git-floss delete-local-release
+
+Deletes the un-needed release... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)
+
+Options:
+  -v, --version  The release version (Major or Minor)                       [string]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss create-hotfix
+
+Stages master for a patch.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript 
+                 project with a package.json file.                          [string]
+```
+
+```
+git-floss merge-hotfix-develop
+
+Merges hotfix into develop
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss merge-hotfix-master
+
+Merges hotfix into master and deletes local hotfix branch.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss checkout-hotfix-branch
+
+Checks out hotfix.
+
+Options:
+  -v, --version  The hotfix version to checkout.                            [string]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss push-hotfix-branch
+
+Pushes hotfix.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss bump-hotfix-version
+
+Increases the hotfix version.
+
+Options:
+      --version  Show version number                                      [boolean]
+  -h, --help     Show help                                                [boolean]
+  -d, --cwd      The current working directory for the process 
+                 that ran the command.                                     [string]
+  -j, --nodejs   Whether the target project is a NodeJS/Typescript 
+                 project with a package.json file.                         [string]
+```
+
+```
+git-floss delete-local-hotfix
+
+Deletes the un-needed hotfix... (ONLY AFTER MERGING INTO MASTER AND DEVELOP!!!)
+
+Options:
+  -v, --version  Hotfix version.                                            [string]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss commit-current-branch
+
+Commits the currently checked out branch.
+
+Options:
+      --version   Show version number                                      [boolean]
+  -h, --help      Show help                                                [boolean]
+  -u, --userName  The user name of the person committing the branch.        [string]
+  -m, --message   The message for the commit.                               [string]
+```
+
+```
+git-floss push-current-branch
+
+Pushes the currently checked out branch to origin.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss checkout-branch
+
+Checks out an existing branch.
+
+Options:
+      --version   Show version number                                      [boolean]
+  -h, --help      Show help                                                [boolean]
+  -n, --name      The name of the branch to checkout.                       [string]
+  -u, --userName  The user name of the person checking out the branch.      [string]
+```
+
+```
+git-floss checkout-develop-branch
+
+Checks out develop.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
+
+```
+git-floss checkout-master-branch
+
+Checks out master.
+
+Options:
+      --version  Show version number                                       [boolean]
+  -h, --help     Show help                                                 [boolean]
+```
 
 # Build and Install
 
