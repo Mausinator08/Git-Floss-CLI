@@ -212,12 +212,292 @@ const regexReplace = require('./utilities/regexReplace.js');
 				return;
 			}
 
-			if (argv.length === 0) {
+			if (argv._.length === 0) {
 				console.log(output);
 				return;
 			}
 
 			if (argv._.includes('help') === false) {
+				try {
+					if (argv._.includes('create-feature') === true) {
+						createFeature(argv.name, argv.userName)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('merge-feature') === true) {
+						mergeFeature(argv.name, argv.userName)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('create-release') === true) {
+						createRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('bump-release-version') === true) {
+						bumpReleaseVersion(
+							argv.cwd ? argv.cwd : null,
+							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+						)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('commit-current-branch') === true) {
+						commitCurrentBranch(argv.userName, argv.message)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('merge-release-develop') === true) {
+						mergeReleaseDevelop()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('merge-release-master') === true) {
+						mergeReleaseMaster()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('delete-local-release') === true) {
+						deleteLocalRelease(argv.version)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('push-current-branch') === true) {
+						pushCurrentBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('bump-hotfix-version') === true) {
+						bumpHotfixVersion(
+							argv.cwd ? argv.cwd : null,
+							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+						)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('bump-major-release-version') === true) {
+						bumpMajorReleaseVersion(
+							argv.cwd ? argv.cwd : null,
+							argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
+						)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('checkout-branch') === true) {
+						checkoutBranch(argv.name, argv.userName)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('create-hotfix') === true) {
+						createHotfix(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('create-major-release') === true) {
+						createMajorRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('delete-local-hotfix') === true) {
+						deleteLocalHotfix(argv.version)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('merge-hotfix-develop') === true) {
+						mergeHotfixDevelop()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('merge-hotfix-master') === true) {
+						mergeHotfixMaster()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('checkout-develop-branch') === true) {
+						checkoutDevelopBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('checkout-hotfix-branch') === true) {
+						checkoutHotfixBranch(argv.version)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('checkout-master-branch') === true) {
+						checkoutMasterBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('checkout-release-branch') === true) {
+						checkoutReleaseBranch(argv.version)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('delete-feature-branch') === true) {
+						deleteFeatureBranch(argv.name, argv.userName)
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('push-hotfix-branch') === true) {
+						pushHotfixBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('push-release-branch') === true) {
+						pushReleaseBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					}
+				} catch (error) {
+					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+					console.error(error);
+				}
+
 				console.log(output);
 				return;
 			}
@@ -230,284 +510,4 @@ const regexReplace = require('./utilities/regexReplace.js');
 		});
 
 	//#endregion
-
-	//#region Check which command is passed from command line
-	/** jsdoc-config-generator */
-	try {
-		if (argv._.includes('create-feature') === true) {
-			createFeature(argv.name, argv.userName)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('merge-feature') === true) {
-			mergeFeature(argv.name, argv.userName)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('create-release') === true) {
-			createRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('bump-release-version') === true) {
-			bumpReleaseVersion(
-				argv.cwd ? argv.cwd : null,
-				argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
-			)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('commit-current-branch') === true) {
-			commitCurrentBranch(argv.userName, argv.message)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('merge-release-develop') === true) {
-			mergeReleaseDevelop()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('merge-release-master') === true) {
-			mergeReleaseMaster()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('delete-local-release') === true) {
-			deleteLocalRelease(argv.version)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('push-current-branch') === true) {
-			pushCurrentBranch()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('bump-hotfix-version') === true) {
-			bumpHotfixVersion(argv.cwd ? argv.cwd : null, argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('bump-major-release-version') === true) {
-			bumpMajorReleaseVersion(
-				argv.cwd ? argv.cwd : null,
-				argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false
-			)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('checkout-branch') === true) {
-			checkoutBranch(argv.name, argv.userName)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('create-hotfix') === true) {
-			createHotfix(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('create-major-release') === true) {
-			createMajorRelease(argv.nodejs ? (argv.nodejs === 'true' ? true : false) : false)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('delete-local-hotfix') === true) {
-			deleteLocalHotfix(argv.version)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('merge-hotfix-develop') === true) {
-			mergeHotfixDevelop()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('merge-hotfix-master') === true) {
-			mergeHotfixMaster()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('checkout-develop-branch') === true) {
-			checkoutDevelopBranch()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('checkout-hotfix-branch') === true) {
-			checkoutHotfixBranch(argv.version)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('checkout-master-branch') === true) {
-			checkoutMasterBranch()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('checkout-release-branch') === true) {
-			checkoutReleaseBranch(argv.version)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('delete-feature-branch') === true) {
-			deleteFeatureBranch(argv.name, argv.userName)
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('push-hotfix-branch') === true) {
-			pushHotfixBranch()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		} else if (argv._.includes('push-release-branch') === true) {
-			pushReleaseBranch()
-				.then((val) => {
-					console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.log(val);
-					console.log('Done!');
-				})
-				.catch((err) => {
-					console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-					console.error(err);
-				});
-		}
-	} catch (error) {
-		console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
-		console.error(error);
-	}
 })();
-//#endregion
