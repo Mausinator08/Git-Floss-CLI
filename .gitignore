@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
-# exclude .bin folder
+# exclude project folders
 /.bin/
+
+# exclude project files
+package-lock.json
