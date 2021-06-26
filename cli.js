@@ -210,7 +210,7 @@ const argv = yargs
 			const newOutput = output.replace('cli.js', 'git-floss');
 			console.log(newOutput);
 		}
-	}).argv;
+	});
 //#endregion
 
 //#region Check which command is passed from command line
