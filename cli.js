@@ -198,8 +198,19 @@ const argv = yargs
 	})
 	.command('push-hotfix-branch', 'Pushes hotfix.')
 	.command('push-release-branch', 'Pushes release.')
-	.help('git-floss', 'A command-line utility to enforce a standard workflow for git source control management.', true)
-	.alias('help', 'h').argv;
+	.help()
+	.alias('help', 'h')
+	.parse('', (err, argv, output) => {
+		if (err) {
+			console.error(err);
+			return;
+		}
+
+		if (output) {
+			const newOutput = output.replace('cli.js', 'git-floss');
+			console.log(newOutput);
+		}
+	}).argv;
 //#endregion
 
 //#region Check which command is passed from command line
