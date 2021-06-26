@@ -40,7 +40,7 @@ The following flow is recommended for incorporating a feature.
 
 When a project is ready for a release to production, all features for that release must be committed and merged into develop like above. Then the following flow takes place:
 
-1. `git-floss create-release -j “<true or false goes here to indicate whether this is for a NodeJS/Typescript project with a `package.json` file.” ` (`git-floss create-release -j “true”`)
+1. `git-floss create-release -j “<-j goes here to indicate whether this is for a NodeJS/Typescript project with a `package.json` file.” ` (`git-floss create-release -j`)
    1. This creates a release branch from develop.
 2. Test and fix bugs in this release-<version> branch, committing and pushing as needed.
 3. Once all known bugs are fixed, while on the current release branch, type `git-floss merge-release-develop`.
@@ -52,7 +52,7 @@ If something is later found in production that needs to be fixed, that’s where
 
 Finally, when you are ready for the big `1.0.0` release, the following flow occurs:
 
-1. `git-floss create-major-release -j “<true or flase>”` (`git-floss create-major-release -j "true"`)
+1. `git-floss create-major-release -j “-j is for nodejs projects”` (`git-floss create-major-release -j`)
 2. Test and fix any straggling bugs in this branch, committing and pushing as needed.
 3. Once all known bugs are fixed, while on the current release branch, type `git-floss merge-release-develop`.
    1. Order matters here! If merged to master first, the release branch is deleted. Merge to develop like above first!
@@ -117,7 +117,7 @@ Options:
       --version  Show version number                                       [boolean]
   -h, --help     Show help                                                 [boolean]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript 
-                 project with a package.json file.                          [string]
+                 project with a package.json file.                         [boolean]
 ```
 
 ```
@@ -129,7 +129,7 @@ Options:
       --version  Show version number                                       [boolean]
   -h, --help     Show help                                                 [boolean]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript 
-                 project with a package.json file.                          [string]
+                 project with a package.json file.                         [boolean]
 ```
 
 ```
@@ -183,7 +183,7 @@ Options:
   -d, --cwd      The current working directory for the process 
                  that ran the command.                                     [string]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript 
-                 project with a package.json file.                         [string]
+                 project with a package.json file.                        [boolean]
 ```
 
 ```
@@ -198,7 +198,7 @@ Options:
   -d, --cwd      The current working directory for the process 
                  that ran the command.                                     [string]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript
-                 project with a package.json file.                         [string]
+                 project with a package.json file.                        [boolean]
 ```
 
 ```
@@ -220,7 +220,7 @@ Options:
       --version  Show version number                                       [boolean]
   -h, --help     Show help                                                 [boolean]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript 
-                 project with a package.json file.                          [string]
+                 project with a package.json file.                         [boolean]
 ```
 
 ```
@@ -274,7 +274,7 @@ Options:
   -d, --cwd      The current working directory for the process 
                  that ran the command.                                     [string]
   -j, --nodejs   Whether the target project is a NodeJS/Typescript 
-                 project with a package.json file.                         [string]
+                 project with a package.json file.                        [boolean]
 ```
 
 ```
