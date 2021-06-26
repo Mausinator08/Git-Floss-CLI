@@ -32,6 +32,7 @@ const pushHotfixBranch = require('./scripts/push-hotfix-branch.js');
 const pushReleaseBranch = require('./scripts/push-release-branch.js');
 const dateFormater = require('./utilities/date-formater.js');
 const regexReplace = require('./utilities/regexReplace.js');
+const listBranches = require('./scripts/list-branches.js');
 //#endregion
 
 (async () => {
@@ -204,6 +205,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		})
 		.command('push-hotfix-branch', 'Pushes hotfix.')
 		.command('push-release-branch', 'Pushes release.')
+		.command('list-branches', 'Lists all local and remote branches.')
 		.help()
 		.alias('help', 'h')
 		.parse(process.argv.slice(2), {}, (err, argv, output) => {
@@ -482,6 +484,17 @@ const regexReplace = require('./utilities/regexReplace.js');
 							});
 					} else if (argv._.includes('push-release-branch') === true) {
 						pushReleaseBranch()
+							.then((val) => {
+								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.log(val);
+								console.log('Done!');
+							})
+							.catch((err) => {
+								console.error(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
+								console.error(err);
+							});
+					} else if (argv._.includes('list-branches') === true) {
+						listBranches()
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
