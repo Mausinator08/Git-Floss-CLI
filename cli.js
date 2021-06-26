@@ -212,12 +212,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 				return;
 			}
 
-			if (argv._.length === 0) {
-				console.log(output);
-				return;
-			}
-
-			if (argv._.length > 2 === false) {
+			if (argv._.length > 0) {
 				try {
 					if (argv._.includes('create-feature') === true) {
 						createFeature(argv.name, argv.userName)
