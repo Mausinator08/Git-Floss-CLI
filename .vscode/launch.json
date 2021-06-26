@@ -26,7 +26,11 @@
       ],
       "program": "${workspaceFolder}\\cli.js",
       "args": [
-        "push-current-branch"
+        "commit-current-branch",
+        "-u",
+        "\"Mausinator08\"",
+        "-m",
+        "fixed help system"
       ],
       "preLaunchTask": "post-install"
     },

@@ -206,7 +206,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 		.command('push-release-branch', 'Pushes release.')
 		.help()
 		.alias('help', 'h')
-		.parse(process.argv, {}, (err, argv, output) => {
+		.parse(process.argv.slice(2).argv, {}, (err, argv, output) => {
 			if (err) {
 				console.error(err);
 				return;
@@ -217,7 +217,7 @@ const regexReplace = require('./utilities/regexReplace.js');
 				return;
 			}
 
-			if (argv._.length > 2) {
+			if (argv._.length > 2 === false) {
 				try {
 					if (argv._.includes('create-feature') === true) {
 						createFeature(argv.name, argv.userName)
