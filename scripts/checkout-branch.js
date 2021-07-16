@@ -7,14 +7,14 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (name, userName) => {
+module.exports = async (name) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
         case "win32":
           {
             exec(
-              `git checkout ${userName}-${name}`,
+              `git checkout ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -28,7 +28,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\n${userName}-${name} checked out!`);
+                resolve(`${stdout}\n${name} checked out!`);
               },
             );
           }
@@ -37,7 +37,7 @@ module.exports = async (name, userName) => {
         case "darwin":
           {
             exec(
-              `git checkout ${userName}-${name}`,
+              `git checkout ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -51,7 +51,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\n${userName}-${name} checked out!`);
+                resolve(`${stdout}\n${name} checked out!`);
               },
             );
           }
@@ -60,7 +60,7 @@ module.exports = async (name, userName) => {
         case "linux":
           {
             exec(
-              `git checkout ${userName}-${name}`,
+              `git checkout ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -74,7 +74,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\n${userName}-${name} checked out!`);
+                resolve(`${stdout}\n${name} checked out!`);
               },
             );
           }

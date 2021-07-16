@@ -7,7 +7,7 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (userName, message) => {
+module.exports = async (message) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
@@ -15,7 +15,7 @@ module.exports = async (userName, message) => {
           {
             exec(
               `git add -A && ` +
-                `git commit -a -m "${userName}: ${message}"`,
+                `git commit -a -m "${message}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -29,7 +29,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nBranch committed!`);
               },
             );
           }
@@ -38,7 +38,7 @@ module.exports = async (userName, message) => {
         case "darwin":
           {
             exec(
-              `git add -A && ` + `git commit -a -m "${userName}: ${message}"`,
+              `git add -A && ` + `git commit -a -m "${message}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -52,7 +52,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nBranch committed!`);
               },
             );
           }
@@ -61,7 +61,7 @@ module.exports = async (userName, message) => {
         case "linux":
           {
             exec(
-              `git add -A && ` + `git commit -a -m "${userName}: ${message}"`,
+              `git add -A && ` + `git commit -a -m "${message}"`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -75,7 +75,7 @@ module.exports = async (userName, message) => {
                   }
                 }
 
-                resolve(`${stdout}\nBranch committed by ${userName}!`);
+                resolve(`${stdout}\nBranch committed!`);
               },
             );
           }

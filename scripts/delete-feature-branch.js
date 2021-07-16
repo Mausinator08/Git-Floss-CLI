@@ -8,14 +8,14 @@ const { exec } = require("child_process");
 const fs = require("fs");
 //#endregion
 
-module.exports = async (name, userName) => {
+module.exports = async (name) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
         case "win32":
           {
             exec(
-              `git branch -d ${userName}-${name}`,
+              `git branch -d ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -29,7 +29,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nDeleted ${userName}-${name}!`);
+                resolve(`${stdout}\nDeleted ${name}!`);
               },
             );
           }
@@ -38,7 +38,7 @@ module.exports = async (name, userName) => {
         case "darwin":
           {
             exec(
-              `git branch -d ${userName}-${name}`,
+              `git branch -d ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -52,7 +52,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nDeleted ${userName}-${name}!`);
+                resolve(`${stdout}\nDeleted ${name}!`);
               },
             );
           }
@@ -61,7 +61,7 @@ module.exports = async (name, userName) => {
         case "linux":
           {
             exec(
-              `git branch -d ${userName}-${name}`,
+              `git branch -d ${name}`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
                   if (error) {
@@ -75,7 +75,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nDeleted ${userName}-${name}!`);
+                resolve(`${stdout}\nDeleted ${name}!`);
               },
             );
           }
