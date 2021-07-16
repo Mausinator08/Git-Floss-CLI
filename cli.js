@@ -44,22 +44,12 @@ const listBranches = require('./scripts/list-branches.js');
 				description: 'The name of the feature branch.',
 				alias: 'n',
 				type: 'string'
-			},
-			userName: {
-				description: 'The name of the user creating the feature branch.',
-				alias: 'u',
-				type: 'string'
 			}
 		})
 		.command('merge-feature', 'Merges a feature branch into develop.', {
 			name: {
 				description: 'The name of the feature branch.',
 				alias: 'n',
-				type: 'string'
-			},
-			userName: {
-				description: 'The name of the user merging the feature branch.',
-				alias: 'u',
 				type: 'string'
 			}
 		})
@@ -83,11 +73,6 @@ const listBranches = require('./scripts/list-branches.js');
 			}
 		})
 		.command('commit-current-branch', 'Commits the currently checked out branch.', {
-			userName: {
-				description: 'The user name of the person committing the branch.',
-				alias: 'u',
-				type: 'string'
-			},
 			message: {
 				description: 'The message for the commit.',
 				alias: 'm',
@@ -141,11 +126,6 @@ const listBranches = require('./scripts/list-branches.js');
 				description: 'The name of the branch to checkout.',
 				alias: 'n',
 				type: 'string'
-			},
-			userName: {
-				description: 'The user name of the person checking out the branch.',
-				alias: 'u',
-				type: 'string'
 			}
 		})
 		.command('create-hotfix', 'Stages master for a patch.', {
@@ -196,11 +176,6 @@ const listBranches = require('./scripts/list-branches.js');
 				description: 'The name of the branch to delete.',
 				alias: 'n',
 				type: 'string'
-			},
-			userName: {
-				description: 'The user name of the person deleting the branch.',
-				alias: 'u',
-				type: 'string'
 			}
 		})
 		.command('push-hotfix-branch', 'Pushes hotfix.')
@@ -230,7 +205,7 @@ const listBranches = require('./scripts/list-branches.js');
 			if (argv._.length > 0 && (argv.help === false || argv.help === undefined || argv.help === null)) {
 				try {
 					if (argv._.includes('create-feature') === true) {
-						createFeature(argv.name, argv.userName)
+						createFeature(argv.name)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -241,7 +216,7 @@ const listBranches = require('./scripts/list-branches.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('merge-feature') === true) {
-						mergeFeature(argv.name, argv.userName)
+						mergeFeature(argv.name)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -274,7 +249,7 @@ const listBranches = require('./scripts/list-branches.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('commit-current-branch') === true) {
-						commitCurrentBranch(argv.userName, argv.message)
+						commitCurrentBranch(argv.message)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -351,7 +326,7 @@ const listBranches = require('./scripts/list-branches.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('checkout-branch') === true) {
-						checkoutBranch(argv.name, argv.userName)
+						checkoutBranch(argv.name)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
@@ -461,7 +436,7 @@ const listBranches = require('./scripts/list-branches.js');
 								console.error(err);
 							});
 					} else if (argv._.includes('delete-feature-branch') === true) {
-						deleteFeatureBranch(argv.name, argv.userName)
+						deleteFeatureBranch(argv.name)
 							.then((val) => {
 								console.log(`[Date: ${dateFormater.toString(new Date(), 126, true)}]`);
 								console.log(val);
