@@ -9,110 +9,176 @@ const fs = require("fs");
 //#endregion
 
 module.exports = async () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      switch (os.platform()) {
-        case "win32":
-          {
-            const version = fs.readFileSync(process.cwd() + "\\VERSION", {
-              encoding: "utf-8"
-            });
+	return new Promise(async (resolve, reject) => {
+		try {
+			switch (os.platform()) {
+				case "win32":
+					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
 
-            exec(
-              `git checkout master && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff hotfix-${version} && ` +
-                `git tag -a ${version} -m "version ${version}" && ` +
-                `git branch -d hotfix-${version} && ` +
-                `git push origin master`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
 
-                resolve(`${stdout}\nHotfix-${version} merged!`);
-              },
-            );
-          }
-          break;
+						const version = fs.readFileSync(
+							process.cwd() + "\\VERSION",
+							{
+								encoding: "utf-8",
+							}
+						);
 
-        case "darwin":
-          {
-            const version = fs.readFileSync(process.cwd() + "/VERSION", {
-              encoding: "utf-8"
-            });
+						exec(
+							`git checkout master && ` +
+								`git fetch && ` +
+								`git pull && ` +
+								`git merge --no-ff hotfix-${version} && ` +
+								`git tag -a ${version} -m "version ${version}" && ` +
+								`git branch -d hotfix-${version} && ` +
+								`git push origin master`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
 
-            exec(
-              `git checkout master && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff hotfix-${version} && ` +
-                `git tag -a ${version} -m "version ${version}"` +
-                `git branch -d hotfix-${version} && ` +
-                `git push origin master`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+								resolve(`${stdout}\nHotfix-${version} merged!`);
+							}
+						);
+					}
+					break;
 
-                resolve(`${stdout}\nHotfix-${version} merged!`);
-              },
-            );
-          }
-          break;
+				case "darwin":
+					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
 
-        case "linux":
-          {
-            const version = fs.readFileSync(process.cwd() + "/VERSION", {
-              encoding: "utf-8"
-            });
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
 
-            exec(
-              `git checkout master && ` +
-                `git fetch && ` +
-                `git pull && ` +
-                `git merge --no-ff hotfix-${version} && ` +
-                `git tag -a ${version} -m "version ${version}"` +
-                `git branch -d hotfix-${version} && ` +
-                `git push origin master`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+						const version = fs.readFileSync(
+							process.cwd() + "/VERSION",
+							{
+								encoding: "utf-8",
+							}
+						);
 
-                resolve(`${stdout}\nHotfix-${version} merged!`);
-              },
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      reject(error);
-    }
-  });
+						exec(
+							`git checkout master && ` +
+								`git fetch && ` +
+								`git pull && ` +
+								`git merge --no-ff hotfix-${version} && ` +
+								`git tag -a ${version} -m "version ${version}"` +
+								`git branch -d hotfix-${version} && ` +
+								`git push origin master`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
+
+								resolve(`${stdout}\nHotfix-${version} merged!`);
+							}
+						);
+					}
+					break;
+
+				case "linux":
+					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
+
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
+
+						const version = fs.readFileSync(
+							process.cwd() + "/VERSION",
+							{
+								encoding: "utf-8",
+							}
+						);
+
+						exec(
+							`git checkout master && ` +
+								`git fetch && ` +
+								`git pull && ` +
+								`git merge --no-ff hotfix-${version} && ` +
+								`git tag -a ${version} -m "version ${version}"` +
+								`git branch -d hotfix-${version} && ` +
+								`git push origin master`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
+
+								resolve(`${stdout}\nHotfix-${version} merged!`);
+							}
+						);
+					}
+					break;
+			}
+		} catch (error) {
+			reject(error);
+		}
+	});
 };

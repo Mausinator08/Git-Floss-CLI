@@ -1,18 +1,37 @@
-'use strict';
+"use strict";
 
 /** @module scripts/merge-feature */
 
 //#region Required
-const os = require('os');
-const { exec } = require('child_process');
+const os = require("os");
+const { exec } = require("child_process");
 //#endregion
 
 module.exports = async () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			switch (os.platform()) {
-				case 'win32':
+				case "win32":
 					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
+
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
+
 						exec(`git push origin`, (error, stdout, stderr) => {
 							if (error || stderr) {
 								if (error) {
@@ -31,8 +50,27 @@ module.exports = async () => {
 					}
 					break;
 
-				case 'darwin':
+				case "darwin":
 					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
+
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
+
 						exec(`git push origin`, (error, stdout, stderr) => {
 							if (error || stderr) {
 								if (error) {
@@ -51,8 +89,27 @@ module.exports = async () => {
 					}
 					break;
 
-				case 'linux':
+				case "linux":
 					{
+						exec(
+							`git add -A && ` +
+								`git commit -a -m "auto committing..."`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										console.log(
+											"Already committed!\n" + stdout
+										);
+										return;
+									}
+								}
+
+								console.warn(
+									"You forgot to commit! Committing, but with the default message of 'auto committing...'"
+								);
+							}
+						);
+
 						exec(`git push origin`, (error, stdout, stderr) => {
 							if (error || stderr) {
 								if (error) {
