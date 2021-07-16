@@ -7,7 +7,7 @@ const os = require("os");
 const { exec } = require("child_process");
 //#endregion
 
-module.exports = async (name, userName) => {
+module.exports = async (name) => {
   return new Promise(async (resolve, reject) => {
     try {
       switch (os.platform()) {
@@ -17,8 +17,8 @@ module.exports = async (name, userName) => {
                 `git checkout develop && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
+                `git merge --no-ff ${name} && ` +
+                `git branch -d ${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -33,7 +33,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nFeature ${name} merged!`);
               },
             );
           }
@@ -45,8 +45,8 @@ module.exports = async (name, userName) => {
                 `git checkout develop && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
+                `git merge --no-ff ${name} && ` +
+                `git branch -d ${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -61,7 +61,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nFeature ${name} merged!`);
               },
             );
           }
@@ -73,8 +73,8 @@ module.exports = async (name, userName) => {
                 `git checkout develop && ` +
                 `git fetch && ` +
                 `git pull && ` +
-                `git merge --no-ff ${userName}-${name} && ` +
-                `git branch -d ${userName}-${name} && ` +
+                `git merge --no-ff ${name} && ` +
+                `git branch -d ${name} && ` +
                 `git push origin develop`,
               (error, stdout, stderr) => {
                 if (error || stderr) {
@@ -89,7 +89,7 @@ module.exports = async (name, userName) => {
                   }
                 }
 
-                resolve(`${stdout}\nFeature ${userName}-${name} merged!`);
+                resolve(`${stdout}\nFeature ${name} merged!`);
               },
             );
           }
