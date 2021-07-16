@@ -980,7 +980,7 @@ const initDefaultConfig = require("./scripts/init-default-config.js");
                             );
                         }
                         config = JSON.parse(config);
-                        initDefaultConfig(argv.nodejs ? true : config.isNode)
+                        initDefaultConfig(argv.nodejs ? true : false)
                             .then((val) => {
                                 console.log(
                                     `[Date: ${dateFormater.toString(
