@@ -10,6 +10,11 @@ const { exec } = require("child_process");
 module.exports = async (version) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			if (version === null) {
+				console.error("Version not specified!");
+				return;
+			}
+
 			switch (os.platform()) {
 				case "win32":
 					{

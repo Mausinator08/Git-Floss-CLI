@@ -10,6 +10,11 @@ const { exec } = require("child_process");
 module.exports = async (name) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			if (name === null) {
+				console.error("Branch name not specified!");
+				return;
+			}
+
 			switch (os.platform()) {
 				case "win32":
 					{

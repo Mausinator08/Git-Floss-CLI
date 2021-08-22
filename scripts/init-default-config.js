@@ -29,7 +29,7 @@ module.exports = async (nodejs = true) => {
 							{ encoding: "utf-8" }
 						);
 
-						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.1", {
+						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.0", {
 							encoding: "utf-8",
 						});
 
@@ -55,7 +55,7 @@ module.exports = async (nodejs = true) => {
 							{ encoding: "utf-8" }
 						);
 
-						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.1", {
+						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.0", {
 							encoding: "utf-8",
 						});
 
@@ -81,7 +81,7 @@ module.exports = async (nodejs = true) => {
 							{ encoding: "utf-8" }
 						);
 
-						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.1", {
+						fs.writeFileSync(process.cwd() + "\\VERSION", "0.0.0", {
 							encoding: "utf-8",
 						});
 

@@ -10,6 +10,11 @@ const { exec } = require("child_process");
 module.exports = async (name) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			if (name === null) {
+				console.error("Feature name not specified!");
+				return;
+			}
+
 			switch (os.platform()) {
 				case "win32":
 					{
@@ -33,7 +38,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop`,
+							`git checkout -b ${name} develop` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -75,7 +80,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop`,
+							`git checkout -b ${name} develop` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -117,7 +122,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop`,
+							`git checkout -b ${name} develop` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {

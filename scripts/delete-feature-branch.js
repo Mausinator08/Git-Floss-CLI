@@ -9,80 +9,88 @@ const fs = require("fs");
 //#endregion
 
 module.exports = async (name) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      switch (os.platform()) {
-        case "win32":
-          {
-            exec(
-              `git branch -d ${name}`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+	return new Promise(async (resolve, reject) => {
+		try {
+			if (name === null) {
+				console.error("Feature name not specified!");
+				return;
+			}
 
-                resolve(`${stdout}\nDeleted ${name}!`);
-              },
-            );
-          }
-          break;
+			switch (os.platform()) {
+				case "win32":
+					{
+						exec(
+							`git branch -d ${name}` +
+								`git push origin --delete ${name}`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
 
-        case "darwin":
-          {
-            exec(
-              `git branch -d ${name}`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+								resolve(`${stdout}\nDeleted ${name}!`);
+							}
+						);
+					}
+					break;
 
-                resolve(`${stdout}\nDeleted ${name}!`);
-              },
-            );
-          }
-          break;
+				case "darwin":
+					{
+						exec(
+							`git branch -d ${name}` +
+								`git push origin --delete ${name}`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
 
-        case "linux":
-          {
-            exec(
-              `git branch -d ${name}`,
-              (error, stdout, stderr) => {
-                if (error || stderr) {
-                  if (error) {
-                    reject(
-                      new Error(
-                        `The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
-                          `output:\n${stdout}\n\n${stderr}`,
-                      ),
-                    );
-                    return;
-                  }
-                }
+								resolve(`${stdout}\nDeleted ${name}!`);
+							}
+						);
+					}
+					break;
 
-                resolve(`${stdout}\nDeleted ${name}!`);
-              },
-            );
-          }
-          break;
-      }
-    } catch (error) {
-      reject(error);
-    }
-  });
+				case "linux":
+					{
+						exec(
+							`git branch -d ${name}` +
+								`git push origin --delete ${name}`,
+							(error, stdout, stderr) => {
+								if (error || stderr) {
+									if (error) {
+										reject(
+											new Error(
+												`The command ${error.cmd} threw an error!\nThe error code was ${error.code}.\nMessage: ${error.message}\n\n` +
+													`output:\n${stdout}\n\n${stderr}`
+											)
+										);
+										return;
+									}
+								}
+
+								resolve(`${stdout}\nDeleted ${name}!`);
+							}
+						);
+					}
+					break;
+			}
+		} catch (error) {
+			reject(error);
+		}
+	});
 };
