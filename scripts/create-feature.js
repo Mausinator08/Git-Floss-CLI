@@ -38,7 +38,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop` + `git push`,
+							`git checkout -b ${name} develop && ` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -80,7 +80,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop` + `git push`,
+							`git checkout -b ${name} develop && ` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -122,7 +122,7 @@ module.exports = async (name) => {
 						);
 
 						exec(
-							`git checkout -b ${name} develop` + `git push`,
+							`git checkout -b ${name} develop && ` + `git push`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
