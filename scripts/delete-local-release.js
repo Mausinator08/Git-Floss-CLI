@@ -20,7 +20,7 @@ module.exports = async (version) => {
 				case "win32":
 					{
 						exec(
-							`git branch -D release-${version}` +
+							`git branch -D release-${version} && ` +
 								`git push origin --delete release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -46,7 +46,7 @@ module.exports = async (version) => {
 				case "darwin":
 					{
 						exec(
-							`git branch -D release-${version}` +
+							`git branch -D release-${version} && ` +
 								`git push origin --delete release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -72,7 +72,7 @@ module.exports = async (version) => {
 				case "linux":
 					{
 						exec(
-							`git branch -D release-${version}` +
+							`git branch -D release-${version} && ` +
 								`git push origin --delete release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
