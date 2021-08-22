@@ -10,6 +10,11 @@ const { exec } = require("child_process");
 module.exports = async (name) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			if (name === null) {
+				console.error("Feature name not specified!");
+				return;
+			}
+
 			switch (os.platform()) {
 				case "win32":
 					{
@@ -37,7 +42,6 @@ module.exports = async (name) => {
 								`git fetch && ` +
 								`git pull && ` +
 								`git merge --no-ff ${name} && ` +
-								`git branch -d ${name} && ` +
 								`git push origin develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -84,7 +88,6 @@ module.exports = async (name) => {
 								`git fetch && ` +
 								`git pull && ` +
 								`git merge --no-ff ${name} && ` +
-								`git branch -d ${name} && ` +
 								`git push origin develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -131,7 +134,6 @@ module.exports = async (name) => {
 								`git fetch && ` +
 								`git pull && ` +
 								`git merge --no-ff ${name} && ` +
-								`git branch -d ${name} && ` +
 								`git push origin develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
