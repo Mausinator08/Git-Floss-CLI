@@ -41,7 +41,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin hotfix-${version}`,
+							`git checkout hotfix-${version}` +
+								`git push origin hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -92,7 +93,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin hotfix-${version}`,
+							`git checkout hotfix-${version}` +
+								`git push origin hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -143,7 +145,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin hotfix-${version}`,
+							`git checkout hotfix-${version}` +
+								`git push origin hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {

@@ -41,7 +41,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin release-${version}`,
+							`git checkout release-${version}` +
+								`git push origin release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -92,7 +93,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin release-${version}`,
+							`git checkout release-${version}` +
+								`git push origin release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -143,7 +145,8 @@ module.exports = async () => {
 						);
 
 						exec(
-							`git push origin release-${version}`,
+							`git checkout release-${version}` +
+								`git push origin release-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {

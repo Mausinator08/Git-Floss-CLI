@@ -47,7 +47,8 @@ module.exports = async () => {
 								`git merge --no-ff hotfix-${version} && ` +
 								`git tag -a ${version} -m "version ${version}" && ` +
 								`git branch -d hotfix-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -102,7 +103,8 @@ module.exports = async () => {
 								`git merge --no-ff hotfix-${version} && ` +
 								`git tag -a ${version} -m "version ${version}"` +
 								`git branch -d hotfix-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -157,7 +159,8 @@ module.exports = async () => {
 								`git merge --no-ff hotfix-${version} && ` +
 								`git tag -a ${version} -m "version ${version}"` +
 								`git branch -d hotfix-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {

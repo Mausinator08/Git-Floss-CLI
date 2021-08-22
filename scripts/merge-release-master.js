@@ -47,7 +47,8 @@ module.exports = async () => {
 								`git merge --no-ff release-${version} && ` +
 								`git tag -a ${version} -m "version ${version}" && ` +
 								`git branch -d release-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -104,7 +105,8 @@ module.exports = async () => {
 								`git merge --no-ff release-${version} && ` +
 								`git tag -a ${version} -m "version ${version}"` +
 								`git branch -d release-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
@@ -161,7 +163,8 @@ module.exports = async () => {
 								`git merge --no-ff release-${version} && ` +
 								`git tag -a ${version} -m "version ${version}" && ` +
 								`git branch -d release-${version} && ` +
-								`git push origin master`,
+								`git push origin master` +
+								`git checkout develop`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
 									if (error) {
