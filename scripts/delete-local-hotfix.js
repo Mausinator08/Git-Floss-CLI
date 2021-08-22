@@ -15,12 +15,12 @@ module.exports = async (version) => {
 				console.error("Version not specified!");
 				return;
 			}
-			
+
 			switch (os.platform()) {
 				case "win32":
 					{
 						exec(
-							`git branch -d hotfix-${version} && ` +
+							`git branch -D hotfix-${version} && ` +
 								`git push origin --delete hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -46,7 +46,7 @@ module.exports = async (version) => {
 				case "darwin":
 					{
 						exec(
-							`git branch -d hotfix-${version}` +
+							`git branch -D hotfix-${version}` +
 								`git push origin --delete hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
@@ -72,7 +72,7 @@ module.exports = async (version) => {
 				case "linux":
 					{
 						exec(
-							`git branch -d hotfix-${version}` +
+							`git branch -D hotfix-${version}` +
 								`git push origin --delete hotfix-${version}`,
 							(error, stdout, stderr) => {
 								if (error || stderr) {
